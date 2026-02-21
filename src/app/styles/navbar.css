@@ -9,17 +9,20 @@ input:focus {
   display: none;
 }
 .mobile-menu {
-  height: 18vh;
+  height: 20vh;
 }
 .all-p-button:hover {
     background-color: #F5F5F5;
 }
 /*RESPONSIVE DESIGN*/
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .desktop-search {
     display: none;
   }
   .menu-button {
     display: flex;
+  }
+  .user-menu {
+    display: none;
   }
 }

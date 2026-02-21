@@ -4,6 +4,7 @@ import Home from "./pages/Home.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
+import Account from "./pages/Account.tsx";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
             {
                 path: 'register',
                 Component: Register,
+            },
+            {
+                path: 'account',
+                Component: Account,
             },
             {
                 path: '*',

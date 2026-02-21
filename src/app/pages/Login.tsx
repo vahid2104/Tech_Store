@@ -1,14 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { Formik } from "formik";
+import { useAuth } from "../hooks/useAuth";
+import { useState } from "react";
 
 type FormValues = {
   email: string;
   password: string;
 };
 function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [authError, setAuthError] = useState<string | null>(null);
+  const { loginWithGoogle } = useAuth();
   return (
     <div
       className="flex items-center justify-center"
@@ -68,11 +74,16 @@ function Login() {
 
               return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+            onSubmit={async (values, { setSubmitting }) => {
+              setAuthError(null);
+              try {
+                await login(values.email, values.password);
+                navigate("/");
+              } catch {
+                setAuthError("Invalid email or password.");
+              } finally {
                 setSubmitting(false);
-              }, 400);
+              }
             }}
           >
             {({
@@ -86,6 +97,21 @@ function Login() {
               /* and other goodies */
             }) => (
               <form className="w-full" onSubmit={handleSubmit}>
+                {authError && (
+                  <div
+                    style={{
+                      backgroundColor: "#fee2e2",
+                      color: "#b91c1c",
+                      padding: "10px",
+                      borderRadius: "6px",
+                      marginTop: "10px",
+                      marginBottom: "10px",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    {authError}
+                  </div>
+                )}
                 <Input
                   label="Email"
                   type="email"
@@ -95,8 +121,9 @@ function Login() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
+                  error={touched.email ? errors.email : undefined}
                 />
-                {errors.email && touched.email && errors.email}
+
                 <Input
                   label="Password"
                   type="password"
@@ -106,8 +133,9 @@ function Login() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
+                  error={touched.password ? errors.password : undefined}
                 />
-                {errors.password && touched.password && errors.password}
+
                 <div className="flex items-center justify-between margin-t">
                   <label>
                     <input type="checkbox" style={{ accentColor: "#2E57DD" }} />
@@ -152,7 +180,20 @@ function Login() {
                 </span>
               </div>
             </div>
-            <Button size="lg" variant="secondary" className="w-full margin-t">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="w-full margin-t"
+              onClick={async () => {
+                try {
+                  setAuthError(null);
+                  await loginWithGoogle();
+                  navigate("/");
+                } catch {
+                  setAuthError("Google sign-in failed. Please try again.");
+                }
+              }}
+            >
               <svg
                 style={{
                   width: "1.25rem",

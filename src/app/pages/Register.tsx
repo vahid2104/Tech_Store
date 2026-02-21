@@ -1,18 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Formik } from "formik";
 import { registerSchema } from "../schemas/RegisterFormSchema";
+import { useAuth } from "../hooks/useAuth";
+import { useState } from "react";
 type FormValues = {
   fullName: string;
   email: string;
   password: string;
   confirmPassword: string;
-  term: boolean
+  term: boolean;
 };
 
 function Register() {
+  const navigate = useNavigate();
+  const { register } = useAuth();
+  const { loginWithGoogle } = useAuth();
+  const [authError, setAuthError] = useState<string | null>(null);
   return (
     <div
       className="flex items-center justify-center"
@@ -50,13 +56,21 @@ function Register() {
         >
           <h1 className="text-center text-2xl">Create Account</h1>
           <Formik<FormValues>
-            initialValues={{ fullName: "", email: "", password: "", confirmPassword: "", term: false }}
+            initialValues={{
+              fullName: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+              term: false,
+            }}
             validationSchema={registerSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                await register(values.fullName, values.email, values.password);
+                navigate("/");
+              } finally {
                 setSubmitting(false);
-              }, 400);
+              }
             }}
           >
             {({
@@ -70,6 +84,21 @@ function Register() {
               /* and other goodies */
             }) => (
               <form className="w-full" onSubmit={handleSubmit}>
+                {authError ? (
+                  <div
+                    style={{
+                      backgroundColor: "#fee2e2",
+                      color: "#b91c1c",
+                      padding: "10px",
+                      borderRadius: "6px",
+                      marginTop: "10px",
+                      marginBottom: "10px",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    {authError}
+                  </div>
+                ) : null}
                 <Input
                   label="Full Name"
                   type="text"
@@ -79,8 +108,8 @@ function Register() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.fullName}
+                  error={touched.fullName ? errors.fullName : undefined}
                 />
-                {errors.fullName && touched.fullName && errors.fullName}
                 <Input
                   label="Email"
                   type="email"
@@ -90,8 +119,8 @@ function Register() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
+                  error={touched.email ? errors.email : undefined}
                 />
-                {errors.email && touched.email && errors.email}
                 <Input
                   label="Password"
                   type="password"
@@ -100,9 +129,8 @@ function Register() {
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.password}
+                  error={touched.password ? errors.password : undefined}
                 />
-                {errors.password && touched.password && errors.password}
                 <Input
                   label="Confirm Password"
                   type="password"
@@ -111,16 +139,18 @@ function Register() {
                   name="confirmPassword"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.confirmPassword}
+                  error={
+                    touched.confirmPassword ? errors.confirmPassword : undefined
+                  }
                 />
-                {errors.confirmPassword && touched.confirmPassword && errors.confirmPassword}
-                <div className="flex items-center justify-between margin-t">
+
+                <div className="flex flex-col  margin-t">
                   <label>
                     <input
-                    name="term"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    checked={values.term}
+                      name="term"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      checked={values.term}
                       type="checkbox"
                       style={{ accentColor: "#2E57DD", marginRight: "10px" }}
                     />
@@ -141,8 +171,15 @@ function Register() {
                       </button>
                     </span>
                   </label>
-                  {errors.term && touched.term && errors.term}
+                  {touched.term && errors.term ? (
+                    <>
+                      <p style={{ fontSize: "0.875rem", color: "#ef4444" }}>
+                        {errors.term}
+                      </p>
+                    </>
+                  ) : null}
                 </div>
+
                 <Button
                   variant="primary"
                   size="lg"
@@ -178,7 +215,20 @@ function Register() {
                 </span>
               </div>
             </div>
-            <Button size="lg" variant="secondary" className="w-full margin-t">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="w-full margin-t"
+              onClick={async () => {
+                try {
+                  setAuthError(null);
+                  await loginWithGoogle();
+                  navigate("/");
+                } catch {
+                  setAuthError("Google sign-in failed. Please try again.");
+                }
+              }}
+            >
               <svg
                 style={{
                   width: "1.25rem",
