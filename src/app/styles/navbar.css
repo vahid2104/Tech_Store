@@ -1,0 +1,25 @@
+input:focus {
+  outline-color: #3b3dda;
+}
+.button-hover:hover {
+  background-color: #3e61d4;
+  transition: 0.5s all;
+}
+.menu-button {
+  display: none;
+}
+.mobile-menu {
+  height: 18vh;
+}
+.all-p-button:hover {
+    background-color: #F5F5F5;
+}
+/*RESPONSIVE DESIGN*/
+@media (max-width: 800px) {
+  .desktop-search {
+    display: none;
+  }
+  .menu-button {
+    display: flex;
+  }
+}
