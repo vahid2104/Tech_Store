@@ -1,0 +1,59 @@
+/* Hero Section */
+
+.hero-section {
+  background-color: #f5f8fe;
+  padding: 10vh 0;
+}
+.home-hero-left {
+  width: 40%;
+}
+.home-hero-right {
+  width: 650px;
+  height: 900px;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Features */
+.feature-box {
+    width: 30%;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    gap: 16px;
+}
+.feature-icon-box {
+  width: 24px;
+  height: 24px;
+  padding: 12px;
+  background-color: #2e57dd34;
+  border-radius: 0.5rem;
+}
+
+.feature-icon {
+  color: #2e57dd;
+}
+
+
+@media (max-width: 1024px) {
+  .home-hero-section {
+    flex-direction: column;
+  }
+  .home-hero-left {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 765px) {
+  .home-hero-right {
+    width: 100%;
+    height: auto;
+  }
+  .feature-box {
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
