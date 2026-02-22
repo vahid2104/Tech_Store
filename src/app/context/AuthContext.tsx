@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
+import { Loading } from "../components/Loading";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -57,7 +58,7 @@ const loginWithGoogle = async () => {
   const logout = async () => {
     await signOut(auth);
   };
-if (loading) return <div>Loading...</div>;
+if (loading) return <Loading />;
   return (
     <AuthContext.Provider
       value={{
