@@ -1,3 +1,6 @@
+main {
+  padding-top: 9vh;
+}
 .border {
     border: 1px solid red;
 }
@@ -15,9 +18,9 @@ a {
 .h-full {
     height: 100%;
 }
-.text-center {
-    text-align: center;
-}
+
+
+
 /*FLEX*/
 .flex {
     display: flex
@@ -46,6 +49,9 @@ a {
 .justify-evenly {
     justify-content: space-evenly;
 }
+
+
+
 /*BORDER*/
 .border-none {
     border: none;
@@ -56,6 +62,9 @@ a {
 .border-shadow {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
+
+
 /*ICON*/
 .icon {
     width: 24px;
@@ -72,6 +81,9 @@ a {
 .icon-gray {
     color: #F5F5F5;
 }
+
+
+
 /*LINK*/
 .link {
     text-decoration: none;
@@ -81,6 +93,9 @@ a {
     text-decoration: underline;
     transition: 1s all;
 }
+
+
+
 /*COLOR*/
 .color-foreground {
     color: #6b7280;
@@ -104,6 +119,9 @@ a {
 .bg-color-white {
     background-color: #fff;
 }
+
+
+
 /*PADDING*/
 .padding-md {
     padding: 10px 15px;
@@ -114,6 +132,9 @@ a {
 .padding-t {
     padding-top: 10px;
 }
+
+
+
 /*MARGIN*/
 .margin-y {
     margin: 1rem 0;
@@ -134,7 +155,12 @@ a {
     margin-left: 1rem;
 }
 
+
+
 /*TEXT*/
+.text-center {
+    text-align: center;
+}
 .text-sm {
     font-size: 14px; 
 }
@@ -148,6 +174,14 @@ a {
     font-size: 1.5rem;
     line-height: 2rem;
 }
+.text-4xl {
+    font-size: 3rem;
+    line-height: 3.2rem;
+}
 .text-bold {
     font-weight: bold;
+}
+.text-semibold {
+    font-weight: 600;
+    line-height: 0%;
 }
