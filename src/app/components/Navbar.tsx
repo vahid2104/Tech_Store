@@ -9,7 +9,17 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   return (
-    <nav className="w-full" style={{ padding: "15px 0" }}>
+    <nav
+      className="w-full bg-color-white"
+      style={{
+        padding: "15px 0",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        zIndex: 1000,
+      }}
+    >
       <div className="container flex flex-col items-center justify-between">
         <div className="w-full flex flex-row items-center justify-between">
           {/*LOGO*/}
@@ -17,7 +27,7 @@ export function Navbar() {
             <Link
               to="/"
               className="flex items-center justify-between link"
-              style={{ width: "145px"}}
+              style={{ width: "145px" }}
             >
               <div style={{ backgroundColor: "#2e57dd", borderRadius: "4px" }}>
                 <ShoppingCart className="icon icon-white" />
@@ -118,10 +128,7 @@ export function Navbar() {
             style={{ borderTop: "1px solid #d6d3d3" }}
           >
             <form>
-              <div
-                className="flex w-full"
-                style={{ position: "relative" }}
-              >
+              <div className="flex w-full" style={{ position: "relative" }}>
                 <Search
                   className="icon"
                   style={{
