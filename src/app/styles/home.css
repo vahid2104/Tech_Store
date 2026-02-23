@@ -1,12 +1,13 @@
 section {
   width: 100%;
-  padding: 10vh 0;
+  padding: 7vh 0;
 }
 
 /* Hero Section */
 
 .hero-section {
   background-color: #f5f8fe;
+  padding: 10vh 0;
 }
 .home-hero-left {
   width: 40%;
@@ -115,6 +116,16 @@ section {
 .category-card-text {
   color: rgba(255, 255, 255, 0.9);
 }
+
+/* Featured Products */
+.featured-products-section-title {
+  font-size: 30px;
+  font-weight: 700; 
+  margin-bottom: 32px;
+  margin-block-start: 0;
+}
+
+
 /* Responsive Design */
 
 @media (max-width: 1024px) {

@@ -19,8 +19,15 @@ a {
     height: 100%;
 }
 
-
-
+.gap-sm {
+    gap: 5px;
+}
+.gap-md {
+    gap: 15px;
+}
+.gap-lg {
+    gap: 30px;
+}
 /*FLEX*/
 .flex {
     display: flex
@@ -173,6 +180,9 @@ a {
 .text-lg {
     font-size: 18px;
 }
+.text-xl {
+    font-size: 1.25rem;
+}
 .text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -186,5 +196,7 @@ a {
 }
 .text-semibold {
     font-weight: 600;
+}
+.line-h-none {
     line-height: 0%;
 }

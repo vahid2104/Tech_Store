@@ -29,5 +29,5 @@
 .btn--danger { background: #dc2626; color: white; }
 .btn--danger:hover { filter: brightness(0.95); }
 
-.btn--ghost { background: transparent; color: #111827; }
-.btn--ghost:hover { background: #f3f4f6; }
+.btn--ghost { background: transparent;  color: #6b7280;}
+.btn--ghost:hover { background: #f3f4f6; color: #111827;}

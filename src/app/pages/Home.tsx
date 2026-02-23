@@ -2,7 +2,10 @@ import { Link } from "react-router-dom"
 import { Button } from "../components/Button"
 import { ArrowRight, Headphones, Laptop, Shield, Smartphone, Truck, Zap } from "lucide-react"
 import '../styles/home.css'
+import { products } from "../data/products"
+import { ProductCard } from "../components/ProductCard"
 function Home() {
+  const featuredProducts = products.slice(0, 8);
   return (
     <div style={{minHeight: "100vh"}}>
       {/* Hero Section */}
@@ -37,8 +40,8 @@ function Home() {
             <div className="feature-icon-box">
               <Truck className="feature-icon" />
             </div>
-            <div className="h-full">
-              <h3 className="text-semibold">Free Shipping</h3>
+            <div className="h-full padding-t">
+              <h3 className="text-semibold line-h-none">Free Shipping</h3>
               <p className="text-md color-foreground">On orders over $100</p>
             </div>
           </div>
@@ -46,18 +49,18 @@ function Home() {
             <div className="feature-icon-box">
               <Shield className="feature-icon" />
             </div>
-            <div className="h-full">
-              <h3 className="text-semibold">Free Shipping</h3>
-              <p className="text-md color-foreground">On orders over $100</p>
+            <div className="h-full padding-t">
+              <h3 className="text-semibold line-h-none">Secure Payment</h3>
+              <p className="text-md color-foreground">100% secure transactions</p>
             </div>
           </div>
           <div className="feature-box">
             <div className="feature-icon-box">
               <Zap className="feature-icon" />
             </div>
-            <div className="h-full">
-              <h3 className="text-semibold">Free Shipping</h3>
-              <p className="text-md color-foreground">On orders over $100</p>
+            <div className="h-full padding-t">
+              <h3 className="text-semibold line-h-none">Fast Delivery</h3>
+              <p className="text-md color-foreground">2-3 day shipping available</p>
             </div>
           </div>
          </div>
@@ -106,6 +109,24 @@ function Home() {
               <p className="category-card-text">12+ products</p>
              </div>
             </Link>
+          </div>
+        </div>
+      </section>
+      {/* Featured Products */}
+      <section className="bg-color-gray">
+        <div className="container flex flex-col">
+          <div className="flex justify-between">
+            <h2 className="featured-products-section-title">Featured Products</h2>
+            <Link to="/products">
+            <Button variant="ghost" size="lg" className="gap-sm">
+              View <ArrowRight />
+            </Button>
+            </Link>
+          </div>
+          <div className="w-full flex flex-wrap justify-between">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product}/>
+            ))}
           </div>
         </div>
       </section>
