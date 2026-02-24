@@ -72,7 +72,7 @@ export function Navbar() {
             {/* Cart */}
             <Link to="/cart">
               <ShoppingCart
-                className="icon margin-r"
+                className="icon"
                 style={{ marginTop: "5px" }}
               />
             </Link>
