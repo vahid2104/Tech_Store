@@ -187,6 +187,11 @@ a {
     font-size: 1.5rem;
     line-height: 2rem;
 }
+.text-3xl {
+    font-size: 2.5rem;
+    line-height: 2.7rem;
+    margin-block: 0;
+}
 .text-4xl {
     font-size: 3rem;
     line-height: 3.2rem;

@@ -1,41 +1,81 @@
-import { Link } from "react-router-dom"
-import { Button } from "../components/Button"
-import { ArrowRight, Headphones, Laptop, Shield, Smartphone, Truck, Zap } from "lucide-react"
-import '../styles/home.css'
-import { products } from "../data/products"
-import { ProductCard } from "../components/ProductCard"
+import { Link } from "react-router-dom";
+import { Button } from "../components/Button";
+import {
+  ArrowRight,
+  Headphones,
+  Laptop,
+  Shield,
+  Smartphone,
+  Truck,
+  Zap,
+} from "lucide-react";
+import "../styles/home.css";
+import { products } from "../data/products";
+import { ProductCard } from "../components/ProductCard";
+import { useState } from "react";
 function Home() {
   const featuredProducts = products.slice(0, 8);
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubscribing, setIsSubscribing] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setIsSubscribing(true);
+
+    // Simulate subscription
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    setIsSubscribing(false);
+    setIsSubscribed(true);
+    setEmail("");
+
+    // Reset after 5 seconds
+    setTimeout(() => {
+      setIsSubscribed(false);
+    }, 5000);
+  };
   return (
-    <div style={{minHeight: "100vh"}}>
+    <div style={{ minHeight: "100vh" }}>
       {/* Hero Section */}
       <section className="hero-section">
         <div className="container flex items-center justify-between home-hero-section">
           <div className="home-hero-left">
-            <h1 className="text-4xl text-bold margin-b">Discover the Latest in Texhnology</h1>
-            <p className="text-lg color-foreground">Shop premium computers, smartphones, and accessories from top brands. Free shipping on orders over $100 with fast delivery.</p>
+            <h1 className="text-4xl text-bold margin-b">
+              Discover the Latest in Technology
+            </h1>
+            <p className="text-lg color-foreground">
+              Shop premium computers, smartphones, and accessories from top
+              brands. Free shipping on orders over $100 with fast delivery.
+            </p>
             <div className="flex flex-wrap">
               <Link to="/products" className="margin-r margin-b">
-              <Button size="lg">
-                Shop Now
-                <ArrowRight />
-              </Button>
+                <Button size="lg">
+                  Shop Now
+                  <ArrowRight />
+                </Button>
               </Link>
               <Link to="/products?category=computers">
-              <Button variant="secondary" size="lg">
-                Browse Categories
-              </Button>
+                <Button variant="secondary" size="lg">
+                  Browse Categories
+                </Button>
               </Link>
             </div>
           </div>
           <div>
-            <img className="home-hero-right" src="https://images.unsplash.com/photo-1761795084688-bb007bc51697?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Texhnology Store" />
+            <img
+              className="home-hero-right"
+              src="https://images.unsplash.com/photo-1761795084688-bb007bc51697?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+              alt="Texhnology Store"
+            />
           </div>
         </div>
       </section>
       {/* Features */}
       <section className="bg-color-gray">
-         <div className="container flex flex-wrap justify-between">
+        <div className="container flex flex-wrap justify-between">
           <div className="feature-box">
             <div className="feature-icon-box">
               <Truck className="feature-icon" />
@@ -51,7 +91,9 @@ function Home() {
             </div>
             <div className="h-full padding-t">
               <h3 className="text-semibold line-h-none">Secure Payment</h3>
-              <p className="text-md color-foreground">100% secure transactions</p>
+              <p className="text-md color-foreground">
+                100% secure transactions
+              </p>
             </div>
           </div>
           <div className="feature-box">
@@ -60,10 +102,12 @@ function Home() {
             </div>
             <div className="h-full padding-t">
               <h3 className="text-semibold line-h-none">Fast Delivery</h3>
-              <p className="text-md color-foreground">2-3 day shipping available</p>
+              <p className="text-md color-foreground">
+                2-3 day shipping available
+              </p>
             </div>
           </div>
-         </div>
+        </div>
       </section>
       {/* Category Preview */}
       <section>
@@ -71,43 +115,49 @@ function Home() {
           <h2 className="category-section-title">Shop by Category</h2>
           <div className="w-full flex flex-wrap items-start justify-between">
             <Link to="/products?category=computers" className="category-card">
-             <img src="https://images.unsplash.com/photo-1717390996865-57d607483101?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
-             alt="Computers"
-             className="category-img" />
-             <div className="category-card-overlay" />
-             <div className="category-card-content">
-              <div className="category-icon-box">
-                <Laptop className="category-icon"/>
+              <img
+                src="https://images.unsplash.com/photo-1717390996865-57d607483101?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+                alt="Computers"
+                className="category-img"
+              />
+              <div className="category-card-overlay" />
+              <div className="category-card-content">
+                <div className="category-icon-box">
+                  <Laptop className="category-icon" />
+                </div>
+                <h3 className="category-card-title">Computers</h3>
+                <p className="category-card-text">12+ products</p>
               </div>
-              <h3 className="category-card-title">Computers</h3>
-              <p className="category-card-text">12+ products</p>
-             </div>
             </Link>
             <Link to="/products?category=smartphones" className="category-card">
-             <img src="https://images.unsplash.com/photo-1697545806152-dcbf88b3befb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
-             alt="Smartphones"
-             className="category-img" />
-             <div className="category-card-overlay" />
-             <div className="category-card-content">
-              <div className="category-icon-box">
-                <Smartphone className="category-icon"/>
+              <img
+                src="https://images.unsplash.com/photo-1697545806152-dcbf88b3befb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+                alt="Smartphones"
+                className="category-img"
+              />
+              <div className="category-card-overlay" />
+              <div className="category-card-content">
+                <div className="category-icon-box">
+                  <Smartphone className="category-icon" />
+                </div>
+                <h3 className="category-card-title">Smartphones</h3>
+                <p className="category-card-text">11+ products</p>
               </div>
-              <h3 className="category-card-title">Smartphones</h3>
-              <p className="category-card-text">11+ products</p>
-             </div>
             </Link>
             <Link to="/products?category=accessories" className="category-card">
-             <img src="https://images.unsplash.com/photo-1693279504914-d08266ecbe66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" 
-             alt="Accessories"
-             className="category-img" />
-             <div className="category-card-overlay" />
-             <div className="category-card-content">
-              <div className="category-icon-box">
-                <Headphones className="category-icon"/>
+              <img
+                src="https://images.unsplash.com/photo-1693279504914-d08266ecbe66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
+                alt="Accessories"
+                className="category-img"
+              />
+              <div className="category-card-overlay" />
+              <div className="category-card-content">
+                <div className="category-icon-box">
+                  <Headphones className="category-icon" />
+                </div>
+                <h3 className="category-card-title">Accessories</h3>
+                <p className="category-card-text">12+ products</p>
               </div>
-              <h3 className="category-card-title">Accessories</h3>
-              <p className="category-card-text">12+ products</p>
-             </div>
             </Link>
           </div>
         </div>
@@ -116,22 +166,69 @@ function Home() {
       <section className="bg-color-gray">
         <div className="container flex flex-col">
           <div className="flex justify-between">
-            <h2 className="featured-products-section-title">Featured Products</h2>
+            <h2 className="featured-products-section-title">
+              Featured Products
+            </h2>
             <Link to="/products">
-            <Button variant="ghost" size="lg" className="gap-sm">
-              View <ArrowRight />
-            </Button>
+              <Button variant="ghost" size="lg" className="gap-sm">
+                View <ArrowRight />
+              </Button>
             </Link>
           </div>
           <div className="w-full flex flex-wrap justify-between">
             {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product}/>
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </div>
       </section>
+      {/*Promotional Banner*/}
+      <section className="bg-color-white" style={{ padding: "4rem 0" }}>
+        <div className="container" style={{ padding: "0 24px" }}>
+          <div
+            className="bg-color-blue"
+            style={{ padding: "4rem 0", borderRadius: "1.5rem" }}
+          >
+            <div className="subscribe-box">
+              <h2 className="text-3xl">Get 20% Off Your First Order</h2>
+              <p>Sign up for our newsletter and recieve exclusive deals</p>
+              {isSubscribed ? (
+                <div>
+                  <p>
+                    ✓ Successfully subscribed! Check your email for the discount
+                    code.
+                  </p>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleSubscribe}
+                  className="subscribe-form flex gap-md justify-center"
+                >
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                    className="subscribe-input"
+                  />
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    type="submit"
+                    disabled={isSubscribing}
+                    className="subscribe-button"
+                  >
+                    {isSubscribing ? "Subscribing..." : "Subscribe"}
+                  </Button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
