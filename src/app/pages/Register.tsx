@@ -26,7 +26,7 @@ function Register() {
     >
       <div
         className="w-full flex flex-col items-center"
-        style={{ maxWidth: "28rem" }}
+        style={{ maxWidth: "28rem", padding: "0 3rem" }}
       >
         {/*LOGO*/}
         <div className="flex items-center justify-between margin-b">
