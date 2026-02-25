@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -6,8 +6,18 @@ import { Input } from "./Input";
 import { useAuth } from "../hooks/useAuth";
 import { Button } from "./Button";
 export function Navbar() {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
+    }
+  };
   return (
     <nav
       className="w-full bg-color-white"
@@ -45,7 +55,7 @@ export function Navbar() {
             </Link>
           </div>
           {/* Search Bar - Desktop */}
-          <form style={{ width: "45%" }}>
+          <form onSubmit={handleSearch} style={{ width: "45%" }}>
             <div
               className="flex desktop-search"
               style={{ width: "100%", position: "relative", margin: "0 10px" }}
@@ -64,6 +74,8 @@ export function Navbar() {
                 type="text"
                 placeholder="Search products..."
                 className=" bg-color-gray"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </form>
@@ -71,10 +83,7 @@ export function Navbar() {
           <div className="flex items-center justify-between">
             {/* Cart */}
             <Link to="/cart">
-              <ShoppingCart
-                className="icon"
-                style={{ marginTop: "5px" }}
-              />
+              <ShoppingCart className="icon" style={{ marginTop: "5px" }} />
             </Link>
             {/* User Menu */}
             {isAuthenticated ? (
@@ -143,6 +152,8 @@ export function Navbar() {
                   type="text"
                   placeholder="Search products..."
                   className=" bg-color-gray"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
             </form>
