@@ -175,7 +175,7 @@ function Home() {
               </Button>
             </Link>
           </div>
-          <div className="w-full flex flex-wrap justify-between">
+          <div className="w-full flex flex-wrap items-center justify-center" style={{gap: "1.5rem"}}>
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

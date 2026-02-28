@@ -8,7 +8,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product,}: ProductCardProps) {
     const { addToCart } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
