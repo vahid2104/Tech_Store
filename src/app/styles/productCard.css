@@ -54,7 +54,9 @@
   fill: #facc15;
   color: #facc15;
 }
-
+.product-btn {
+  cursor: default;
+}
 /* Responsive Design */
 
 @media (max-width: 1024px) {

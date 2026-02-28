@@ -55,7 +55,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <Button
         size="md"
         onClick={handleAddToCart}
-        className="w-full"
+        className="w-full product-btn"
         >
           <ShoppingCart className="margin-r" style={{width: "18px", height: "18px"}}/>
           Add to Cart
