@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound.tsx";
 import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import Account from "./pages/Account.tsx";
-import Products from "./pages/Products.tsx";
+import { Products } from "./pages/Products.tsx";
 export const router = createBrowserRouter([
     {
         path: '/',
