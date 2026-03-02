@@ -5,8 +5,10 @@ import { useState } from "react";
 import { Input } from "./Input";
 import { useAuth } from "../hooks/useAuth";
 import { Button } from "./Button";
+import { useCart } from "../hooks/useCart";
 export function Navbar() {
   const navigate = useNavigate();
+  const { cartCount } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
@@ -82,8 +84,11 @@ export function Navbar() {
           {/* Right Side Icons */}
           <div className="flex items-center justify-between">
             {/* Cart */}
-            <Link to="/cart">
+            <Link to="/cart" style={{position: "relative"}}>
               <ShoppingCart className="icon" style={{ marginTop: "5px" }} />
+              {cartCount > 0 && (
+                <span className="cartCount-span">{cartCount}</span>
+              )}
             </Link>
             {/* User Menu */}
             {isAuthenticated ? (
