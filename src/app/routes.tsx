@@ -6,6 +6,7 @@ import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import Account from "./pages/Account.tsx";
 import { Products } from "./pages/Products.tsx";
+import Cart from "./pages/Cart.tsx";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             {
                 path: 'products',
                 Component: Products,
+            },
+            {
+                path: 'cart',
+                Component: Cart,
             },
             {
                 path: '*',
