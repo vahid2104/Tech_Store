@@ -8,6 +8,7 @@ import Account from "./pages/Account.tsx";
 import { Products } from "./pages/Products.tsx";
 import Cart from "./pages/Cart.tsx";
 import Checkout from "./pages/Checkout.tsx";
+import OrderSuccess from "./pages/OrderSuccess.tsx";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
             {
                 path: 'checkout',
                 Component: Checkout,
+            },
+            {
+                path: 'order-success',
+                Component: OrderSuccess,
             },
             {
                 path: '*',
