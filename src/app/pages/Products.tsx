@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { products } from "../data/products";
 import "../styles/products.css";
 import { Button } from "../components/Button";
 import { ProductCard } from "../components/ProductCard";
 import { SlidersHorizontal, X } from "lucide-react";
 export function Products() {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
   const categoryQuery = searchParams.get("category") || "";
@@ -105,110 +106,126 @@ export function Products() {
               className="filter-btn"
               onClick={() => setShowFilters(!showFilters)}
             >
-              <SlidersHorizontal/>
+              <SlidersHorizontal />
               Filters
             </Button>
           </div>
         </div>
         <div className="flex justify-between">
           {/* Sidebar Filters - Desktop */}
-          <aside className={`${showFilters ? 'block' : 'hidden'}`}>
+          <aside className={`${showFilters ? "block" : "hidden"}`}>
             {/* Mobile Close Button */}
-              <div className="flex justify-between items-center aside-header">
-                <h2 className="text-xl font-semibold">Filters</h2>
-                <button
-                  onClick={() => setShowFilters(false)}
-                  className="aside-close-btn"
-                >
-                  <X  />
-                </button>
-              </div>
-            <div className="w-full">
-                <h3 className="font-semibold">Category</h3>
-                <div className="flex flex-col" style={{gap: "0.5rem"}}>
-                  {[
-                    { id: 'all', name: 'All Products' },
-                    { id: 'computers', name: 'Computers' },
-                    { id: 'smartphones', name: 'Smartphones' },
-                    { id: 'accessories', name: 'Accessories' }
-                  ].map((cat) => (
-                    <label key={cat.id} className="flex items-center" style={{cursor: "pointer"}}>
-                      <input
-                        type="radio"
-                        name="category"
-                        checked={selectedCategory === cat.id || (!selectedCategory && cat.id === 'all')}
-                        onChange={() => setSelectedCategory(cat.id === 'all' ? '' : cat.id)}
-                      />
-                      <span className="text-md">{cat.name}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-               {/* Price Range Filter */}
-              <div className="w-full">
-                <h3 className="font-semibold">Price Range</h3>
-                <div>
-                  <input
-                    type="range"
-                    min="0"
-                    max="4000"
-                    step="50"
-                    value={priceRange[1]}
-                    onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
-                  />
-                  <div className="flex justify-between text-sm color-foreground">
-                    <span>${priceRange[0]}</span>
-                    <span>${priceRange[1]}</span>
-                  </div>
-                </div>
-              </div>
-              {/* Rating Filter */}
-              <div className="w-full">
-                <h3 className="font-semibold">Minimum Rating</h3>
-                <div className="flex flex-col" style={{gap: "0.3rem"}}>
-                  {[0, 4, 4.5].map((rating) => (
-                    <label key={rating} className="flex items-center" style={{cursor: "pointer"}}>
-                      <input
-                        type="radio"
-                        name="rating"
-                        checked={minRating === rating}
-                        onChange={() => setMinRating(rating)}
-                      />
-                      <span className="text-md">
-                        {rating === 0 ? 'All Ratings' : `${rating}+ Stars`}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              {/* Clear Filters */}
-              <Button
-                variant="secondary"
-                className="w-full"
-                style={{margin: "1rem 0", backgroundColor: "#e3e1e1"}}
-                onClick={clearFilters}
+            <div className="flex justify-between items-center aside-header">
+              <h2 className="text-xl font-semibold">Filters</h2>
+              <button
+                onClick={() => setShowFilters(false)}
+                className="aside-close-btn"
               >
-                Clear All Filters
-              </Button>
+                <X />
+              </button>
+            </div>
+            <div className="w-full">
+              <h3 className="font-semibold">Category</h3>
+              <div className="flex flex-col" style={{ gap: "0.5rem" }}>
+                {[
+                  { id: "all", name: "All Products" },
+                  { id: "computers", name: "Computers" },
+                  { id: "smartphones", name: "Smartphones" },
+                  { id: "accessories", name: "Accessories" },
+                ].map((cat) => (
+                  <label
+                    key={cat.id}
+                    className="flex items-center"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <input
+                      type="radio"
+                      name="category"
+                      checked={
+                        selectedCategory === cat.id ||
+                        (!selectedCategory && cat.id === "all")
+                      }
+                      onChange={() =>
+                        setSelectedCategory(cat.id === "all" ? "" : cat.id)
+                      }
+                    />
+                    <span className="text-md">{cat.name}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            {/* Price Range Filter */}
+            <div className="w-full">
+              <h3 className="font-semibold">Price Range</h3>
+              <div>
+                <input
+                  type="range"
+                  min="0"
+                  max="4000"
+                  step="50"
+                  value={priceRange[1]}
+                  onChange={(e) => setPriceRange([0, parseInt(e.target.value)])}
+                />
+                <div className="flex justify-between text-sm color-foreground">
+                  <span>${priceRange[0]}</span>
+                  <span>${priceRange[1]}</span>
+                </div>
+              </div>
+            </div>
+            {/* Rating Filter */}
+            <div className="w-full">
+              <h3 className="font-semibold">Minimum Rating</h3>
+              <div className="flex flex-col" style={{ gap: "0.3rem" }}>
+                {[0, 4, 4.5].map((rating) => (
+                  <label
+                    key={rating}
+                    className="flex items-center"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <input
+                      type="radio"
+                      name="rating"
+                      checked={minRating === rating}
+                      onChange={() => setMinRating(rating)}
+                    />
+                    <span className="text-md">
+                      {rating === 0 ? "All Ratings" : `${rating}+ Stars`}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            {/* Clear Filters */}
+            <Button
+              variant="secondary"
+              className="w-full"
+              style={{ margin: "1rem 0", backgroundColor: "#e3e1e1" }}
+              onClick={clearFilters}
+            >
+              Clear All Filters
+            </Button>
           </aside>
 
           {/* Product Grid */}
           <div className="flex products-grid-div">
             {filteredProducts.length > 0 ? (
-              <div className="w-full flex flex-wrap items-center justify-center" style={{gap: "1.5rem"}}>
+              <div
+                className="w-full flex flex-wrap items-center justify-center"
+                style={{ gap: "1.5rem" }}
+              >
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16">
+              <div className="text-center py-16" style={{ margin: "0 auto" }}>
                 <p className="text-muted-foreground text-lg">
                   No products found matching your criteria.
                 </p>
                 <Button
                   variant="primary"
                   className="mt-4"
-                  onClick={clearFilters}
+                  onClick={() => navigate("/products")}
                 >
                   Clear Filters
                 </Button>
