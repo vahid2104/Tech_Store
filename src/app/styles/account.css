@@ -1,11 +1,11 @@
 .profile-box {
-    width: 35%;
-    height: fit-content;
-    border-radius: 1rem;
-    box-sizing: border-box;
+  width: 35%;
+  height: fit-content;
+  border-radius: 1rem;
+  box-sizing: border-box;
 }
-.order-history-box{
-    width: 60%;
+.order-history-box {
+  width: 60%;
 }
 .status-delivered {
   background-color: #dcfce7;
@@ -31,21 +31,21 @@
   border-color: #e5e7eb;
 }
 .additional-section-box {
-    width: 44%;
+  width: 44%;
 }
 
 /* Responsive Design */
 
 @media (max-width: 1024px) {
-    .profile-box {
-        width: 100%;
-    }
-    .order-history-box {
-        width: 100%;
-    }
+  .profile-box {
+    width: 100%;
+  }
+  .order-history-box {
+    width: 100%;
+  }
 }
 @media (max-width: 640px) {
-    .additional-section-box {
+  .additional-section-box {
     width: 100%;
-}
+  }
 }

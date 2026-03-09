@@ -27,7 +27,7 @@ function Account() {
   };
   return (
     <div className="min-h-screen bg-color-white">
-      <div className="container" style={{paddingBottom: "2rem"}}>
+      <div className="container" style={{ paddingBottom: "2rem" }}>
         <h1>My Account</h1>
         <div className="flex flex-wrap justify-between gap-md">
           {/* Profile Info */}
