@@ -11,20 +11,46 @@ import {
 } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { Loading } from "../components/Loading";
+import type { Order } from "../types/order.types";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext<AuthContextType | undefined>(
   undefined,
 );
 
+const mockOrders: Order[] = [
+  {
+    id: "ORD-2024-001",
+    date: "2026-02-10",
+    total: 728,
+    status: "Delivered",
+    items: 3,
+  },
+  {
+    id: "ORD-2024-002",
+    date: "2026-02-05",
+    total: 399,
+    status: "Shipped",
+    items: 1,
+  },
+  {
+    id: "ORD-2024-003",
+    date: "2026-01-28",
+    total: 158,
+    status: "Delivered",
+    items: 2,
+  },
+];
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserType | null>(null);
   const [loading, setLoading] = useState(true);
-const googleProvider = new GoogleAuthProvider();
+  const [orders] = useState<Order[]>(mockOrders);
+  const googleProvider = new GoogleAuthProvider();
 
-const loginWithGoogle = async () => {
-  await signInWithPopup(auth, googleProvider);
-};
+  const loginWithGoogle = async () => {
+    await signInWithPopup(auth, googleProvider);
+  };
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
@@ -49,20 +75,21 @@ const loginWithGoogle = async () => {
     await updateProfile(cred.user, { displayName: name });
 
     // manual update for instant UI reflect
-  setUser({
-    id: cred.user.uid,
-    name,
-    email,
-  });
+    setUser({
+      id: cred.user.uid,
+      name,
+      email,
+    });
   };
   const logout = async () => {
     await signOut(auth);
   };
-if (loading) return <Loading />;
+  if (loading) return <Loading />;
   return (
     <AuthContext.Provider
       value={{
         user,
+        orders,
         login,
         register,
         logout,

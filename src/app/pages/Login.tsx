@@ -17,11 +17,10 @@ function Login() {
   const { loginWithGoogle } = useAuth();
   return (
     <div
-      className="flex items-center justify-center border"
-      style={{ minHeight: "100vh"}}
+      className="flex items-center justify-center min-h-screen"
     >
       <div
-        className="w-full flex flex-col items-center border"
+        className="w-full flex flex-col items-center"
         style={{ maxWidth: "28rem", padding: "0 3rem" }}
       >
         {/*LOGO*/}

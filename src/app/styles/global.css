@@ -66,8 +66,11 @@ a {
 .border-none {
   border: none;
 }
+.box-border {
+  border: 1px solid rgb(221, 220, 220);
+}
 .border-radius {
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 }
 .rounded-full {
   border-radius: 9999px;
@@ -131,6 +134,9 @@ a {
 }
 
 /*PADDING*/
+.padding {
+  padding: 1rem;
+}
 .padding-md {
   padding: 10px 15px;
 }
