@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/navbar.css";
+import "./navbar.css";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Input } from "./Input";
-import { useAuth } from "../hooks/useAuth";
-import { Button } from "./Button";
-import { useCart } from "../hooks/useCart";
+import { Input } from "../Input";
+import { useAuth } from "../../hooks/useAuth";
+import { Button } from "../Button/Button";
+import { useCart } from "../../hooks/useCart";
 export function Navbar() {
   const navigate = useNavigate();
   const { cartCount } = useCart();

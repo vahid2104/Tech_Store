@@ -7,6 +7,15 @@ main {
 a {
   text-decoration: none;
 }
+.gradient-header {
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 64, 175, 0.1),
+    #ffffff,
+    #ffffff
+  );
+  border-bottom: 1px solid #e5e7eb;
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;

@@ -1,7 +1,7 @@
 import { ArrowRight, CheckCircle, Package } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "../components/Button";
+import { Button } from "../components/Button/Button";
 
 export default function OrderSuccess() {
   const [orderId] = useState(

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import type { Product } from "../data/products"
+import type { Product } from "../../data/products"
 import { ShoppingCart, Star } from "lucide-react";
-import { Button } from "./Button";
-import { useCart } from "../hooks/useCart";
-import "../styles/productCard.css"
+import { Button } from "./../Button/Button";
+import { useCart } from "../../hooks/useCart";
+import "./productCard.css"
 interface ProductCardProps {
   product: Product;
 }

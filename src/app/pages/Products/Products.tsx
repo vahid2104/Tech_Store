@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { products } from "../data/products";
-import "../styles/products.css";
-import { Button } from "../components/Button";
-import { ProductCard } from "../components/ProductCard";
+import { products } from "../../data/products";
+import "./products.css";
+import { Button } from "../../components/Button/Button";
+import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { SlidersHorizontal, X } from "lucide-react";
 export function Products() {
   const navigate = useNavigate();

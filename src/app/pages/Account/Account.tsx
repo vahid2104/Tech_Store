@@ -1,7 +1,7 @@
 import { LogOut, Mail, Package, Phone, User } from "lucide-react";
-import { useAuth } from "../hooks/useAuth";
-import { Button } from "../components/Button";
-import "../styles/account.css";
+import { useAuth } from "../../hooks/useAuth";
+import { Button } from "../../components/Button/Button";
+import "./account.css";
 import { useNavigate } from "react-router-dom";
 
 function Account() {

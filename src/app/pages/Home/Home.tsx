@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button } from "../components/Button";
+import { Button } from "../../components/Button/Button";
 import {
   ArrowRight,
   Headphones,
@@ -9,9 +9,9 @@ import {
   Truck,
   Zap,
 } from "lucide-react";
-import "../styles/home.css";
-import { products } from "../data/products";
-import { ProductCard } from "../components/ProductCard";
+import "./home.css";
+import { products } from "../../data/products";
+import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { useState } from "react";
 function Home() {
   const featuredProducts = products.slice(0, 8);

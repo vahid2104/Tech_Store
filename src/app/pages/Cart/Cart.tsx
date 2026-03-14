@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useCart } from "../hooks/useCart";
-import EmptyState from "../components/EmptyState";
+import { useCart } from "../../hooks/useCart";
+import EmptyState from "../../components/EmptyState";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import "../styles/cart.css";
-import { Button } from "../components/Button";
+import "./cart.css";
+import { Button } from "../../components/Button/Button";
 
 export default function Cart() {
   const navigate = useNavigate();

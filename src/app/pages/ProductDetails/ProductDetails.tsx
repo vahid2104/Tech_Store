@@ -1,7 +1,7 @@
-import "../styles/productDetails.css";
-import { products, reviews as allReviews } from "../data/products";
+import "./productDetails.css";
+import { products, reviews as allReviews } from "../../data/products";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "../components/Button";
+import { Button } from "../../components/Button/Button";
 import {
   ArrowLeft,
   Check,
@@ -12,7 +12,7 @@ import {
   Star,
   Truck,
 } from "lucide-react";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
 export default function ProductDetails() {
   const { id } = useParams();

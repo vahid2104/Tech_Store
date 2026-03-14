@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Facebook, Instagram, Mail, ShoppingCart, Twitter } from "lucide-react"
-import '../styles/footer.css';
+import './footer.css';
 function Footer() {
   return (
     <footer className="w-full bg-color-gray">
@@ -49,16 +49,16 @@ function Footer() {
           <h3>Shop</h3>
           <ul>
             <li>
-              <Link to="/" className="list-link">All Products</Link>
+              <Link to="/products" className="list-link">All Products</Link>
             </li>
             <li>
-              <Link to="/" className="list-link">Computers</Link>
+              <Link to="/products?category=computers" className="list-link">Computers</Link>
             </li>
             <li>
-              <Link to="/" className="list-link">Smartphones</Link>
+              <Link to="/products?category=smartphones" className="list-link">Smartphones</Link>
             </li>
             <li>
-              <Link to="/" className="list-link">Accessories</Link>
+              <Link to="/products?category=accessories" className="list-link">Accessories</Link>
             </li>
           </ul>
         </div>
@@ -67,16 +67,16 @@ function Footer() {
           <h3>Support</h3>
           <ul>
             <li>
-              <Link to="/" className="list-link">Help Center</Link>
+              <Link to="/help" className="list-link">Help Center</Link>
             </li>
             <li>
-              <Link to="/" className="list-link">Shipping Info</Link>
+              <Link to="/shipping" className="list-link">Shipping Info</Link>
             </li>
             <li>
-              <Link to="/" className="list-link">Returns</Link>
+              <Link to="/returns" className="list-link">Returns</Link>
             </li>
             <li>
-              <Link to="/" className="list-link">Contact Us</Link>
+              <Link to="/contact" className="list-link">Contact Us</Link>
             </li>
           </ul>
         </div>
@@ -85,10 +85,10 @@ function Footer() {
           <h3>Company</h3>
           <ul>
             <li>
-              <Link to="/" className="list-link">About Us</Link>
+              <Link to="/about" className="list-link">About Us</Link>
             </li>
             <li>
-              <Link to="/" className="list-link">Careers</Link>
+              <Link to="/careers" className="list-link">Careers</Link>
             </li>
             <li>
               <Link to="/" className="list-link">Privacy Policy</Link>

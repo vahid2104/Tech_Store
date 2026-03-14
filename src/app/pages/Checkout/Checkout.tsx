@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../../hooks/useCart";
 import { useNavigate } from "react-router-dom";
-import { Input } from "../components/Input";
-import "../styles/checkout.css";
+import { Input } from "../../components/Input";
+import "./checkout.css";
 import { Check, CreditCard } from "lucide-react";
-import { Button } from "../components/Button";
+import { Button } from "../../components/Button/Button";
 
 export default function Checkout() {
   const navigate = useNavigate();

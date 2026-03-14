@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import { Input } from "../components/Input";
-import { Button } from "../components/Button";
+import { Button } from "../components/Button/Button";
 import { Formik } from "formik";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
