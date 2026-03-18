@@ -11,6 +11,7 @@ import Checkout from "./pages/Checkout/Checkout.tsx";
 import OrderSuccess from "./pages/OrderSuccess.tsx";
 import ProductDetails from "./pages/ProductDetails/ProductDetails.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
+import HelpCenter from "./pages/HelpCenter/HelpCenter.tsx";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
             {
                 path: 'contact',
                 Component: Contact,
+            },
+            {
+                path: 'help',
+                Component: HelpCenter,
             },
             {
                 path: '*',
