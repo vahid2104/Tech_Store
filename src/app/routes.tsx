@@ -12,6 +12,7 @@ import OrderSuccess from "./pages/OrderSuccess.tsx";
 import ProductDetails from "./pages/ProductDetails/ProductDetails.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
 import HelpCenter from "./pages/HelpCenter/HelpCenter.tsx";
+import Shipping from "./pages/Shipping/Shipping.tsx";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
             {
                 path: 'help',
                 Component: HelpCenter,
+            },
+            {
+                path: 'shipping',
+                Component: Shipping,
             },
             {
                 path: '*',
