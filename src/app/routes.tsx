@@ -13,6 +13,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails.tsx";
 import Contact from "./pages/Contact/Contact.tsx";
 import HelpCenter from "./pages/HelpCenter/HelpCenter.tsx";
 import Shipping from "./pages/Shipping/Shipping.tsx";
+import Returns from "./pages/Returns/Returns.tsx";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
             {
                 path: 'shipping',
                 Component: Shipping,
+            },
+            {
+                path: 'returns',
+                Component: Returns,
             },
             {
                 path: '*',
