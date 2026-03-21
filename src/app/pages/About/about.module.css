@@ -1,0 +1,147 @@
+.heroSection {
+  padding: 5rem 0;
+}
+.heroP {
+  max-width: 850px;
+}
+.containerBox {
+  padding: 5rem 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+.statsBox {
+  width: 23%;
+  padding: 2rem 0;
+}
+.storySectionBox {
+  width: 47%;
+}
+.storyImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.valuesDiv {
+  width: 31.5%;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+}
+.valuesIcon {
+  width: 50px;
+  height: 50px;
+  background-color: #2e57dd44;
+  color: #2e57dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+}
+
+.teamBox {
+  width: 23%;
+  border-radius: 1rem;
+}
+.teamImgDiv {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+.teamImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.teamContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 1.5rem 1rem;
+}
+.missionBox {
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 64, 175, 0.1),
+    rgba(30, 64, 175, 0.048),
+    rgba(30, 64, 175, 0.1)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+}
+.missionP {
+  max-width: 800px;
+}
+.sustainabilityBox {
+  width: 47%;
+}
+.sustainabilityImg {
+  width: 100%;
+  border-radius: 1rem;
+}
+.sustainabilityContentUl {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sustainabilityListTypeDiv {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(38, 167, 38, 0.123);
+  border-radius: 9999px;
+}
+.sustainabilityListType {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background-color: rgb(98, 192, 98);
+}
+
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+  .storySectionBox {
+    width: 100%;
+  }
+  .valuesDiv {
+    width: 47%;
+  }
+  .teamBox {
+    width: 47%;
+    margin-bottom: 3rem;
+  }
+  .sustainabilityBox {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 765px) {
+  .statsBox {
+    width: 47%;
+    margin-bottom: 2rem;
+  }
+  .valuesDiv {
+    width: 100%;
+  }
+  .teamBox {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+}

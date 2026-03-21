@@ -14,6 +14,7 @@ import Contact from "./pages/Contact/Contact.tsx";
 import HelpCenter from "./pages/HelpCenter/HelpCenter.tsx";
 import Shipping from "./pages/Shipping/Shipping.tsx";
 import Returns from "./pages/Returns/Returns.tsx";
+import About from "./pages/About/About.tsx";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
             {
                 path: 'returns',
                 Component: Returns,
+            },
+            {
+                path: 'about',
+                Component: About,
             },
             {
                 path: '*',
