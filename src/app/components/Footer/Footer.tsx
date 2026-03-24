@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom"
 import { Facebook, Instagram, Mail, ShoppingCart, Twitter } from "lucide-react"
 import './footer.css';
+import { useState } from "react";
+import TermsModal from "../TermsModal/TermsModal";
+import PrivacyModal from "../PrivacyModal/PrivacyModal";
 function Footer() {
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+
   return (
     <footer className="w-full bg-color-gray">
       <div className="container flex flex-col">
@@ -91,10 +97,14 @@ function Footer() {
               <Link to="/careers" className="list-link">Careers</Link>
             </li>
             <li>
-              <Link to="/" className="list-link">Privacy Policy</Link>
+              <button onClick={() => setShowPrivacyModal(true)}>
+                Privacy Policy
+              </button>
             </li> 
             <li>
-              <Link to="/" className="list-link">Terms of Service</Link>
+              <button onClick={() => setShowTermsModal(true)}>
+                Terms of Service
+              </button>
             </li>
           </ul>
         </div>
@@ -104,6 +114,10 @@ function Footer() {
         </div>
       
       </div>
+
+      {/* Modals */}
+      <TermsModal isOpen={showTermsModal} onClose={() => setShowTermsModal(false)} />
+      <PrivacyModal isOpen={showPrivacyModal} onClose={() => setShowPrivacyModal(false)} />
     </footer>
   )
 }

@@ -6,6 +6,8 @@ import { Formik } from "formik";
 import { registerSchema } from "../schemas/RegisterFormSchema";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
+import TermsModal from "../components/TermsModal/TermsModal";
+import PrivacyModal from "../components/PrivacyModal/PrivacyModal";
 type FormValues = {
   fullName: string;
   email: string;
@@ -19,6 +21,9 @@ function Register() {
   const { register } = useAuth();
   const { loginWithGoogle } = useAuth();
   const [authError, setAuthError] = useState<string | null>(null);
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+
   return (
     <div
       className="flex items-center justify-center"
@@ -159,6 +164,10 @@ function Register() {
                       <button
                         className="border-none bg-color-white text-md color-primary link-hover"
                         style={{ cursor: "pointer", fontWeight: "600" }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowTermsModal(true);
+                        }}
                       >
                         Terms of Service
                       </button>{" "}
@@ -166,6 +175,10 @@ function Register() {
                       <button
                         className="border-none bg-color-white text-md color-primary link-hover"
                         style={{ cursor: "pointer", fontWeight: "600" }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowPrivacyModal(true);
+                        }}
                       >
                         Privacy Policy
                       </button>
@@ -268,6 +281,15 @@ function Register() {
             </Link>
           </p>
         </div>
+        {/* Modals */}
+        <TermsModal
+          isOpen={showTermsModal}
+          onClose={() => setShowTermsModal(false)}
+        />
+        <PrivacyModal
+          isOpen={showPrivacyModal}
+          onClose={() => setShowPrivacyModal(false)}
+        />
       </div>
     </div>
   );
