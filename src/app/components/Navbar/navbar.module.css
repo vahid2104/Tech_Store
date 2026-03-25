@@ -1,0 +1,92 @@
+.nav {
+  padding: 15px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.logoLink {
+  width: 145px;
+}
+.logoIcon {
+  background-color: #2e57dd;
+  border-radius: 4px;
+}
+.logoText {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #353535;
+}
+.form {
+  width: 45%;
+}
+.desktopSearch {
+  width: 100%;
+  position: relative;
+  margin: 0 10px;
+}
+.searchIcon {
+  color: #888;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.positionRelative {
+  position: relative;
+}
+.shoppingCartIcon {
+  margin-top: 5px;
+}
+.userMenu {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.mobileMenu {
+  border-top: 1px solid #d6d3d3;
+  height: 20vh;
+}
+.input:focus {
+  outline-color: #3b3dda;
+}
+.buttonHover:hover {
+  background-color: #3e61d4;
+  transition: 0.5s all;
+}
+.cartCountSpan {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  background-color: #3e61d4;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menuButton {
+  display: none;
+}
+
+.allPButton:hover {
+  background-color: #f5f5f5;
+}
+/*RESPONSIVE DESIGN*/
+@media (max-width: 900px) {
+  .desktopSearch {
+    display: none;
+  }
+  .menuButton {
+    display: flex;
+  }
+  .userMenuLink {
+    display: none;
+  }
+}

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./navbar.css";
+import styles from "./navbar.module.css";
 import { Search, ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Input } from "../Input";
@@ -21,61 +21,29 @@ export function Navbar() {
     }
   };
   return (
-    <nav
-      className="w-full bg-color-white"
-      style={{
-        padding: "15px 0",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        zIndex: 1000,
-      }}
-    >
+    <nav className={`w-full bg-color-white ${styles.nav}`}>
       <div className="container flex flex-col items-center justify-between">
         <div className="w-full flex flex-row items-center justify-between">
           {/*LOGO*/}
           <div className="flex items-center justify-between">
             <Link
               to="/"
-              className="flex items-center justify-between link"
-              style={{ width: "145px" }}
+              className={`flex items-center justify-between link ${styles.logoLink} `}
             >
-              <div style={{ backgroundColor: "#2e57dd", borderRadius: "4px" }}>
+              <div className={`${styles.logoIcon}`}>
                 <ShoppingCart className="icon icon-white" />
               </div>
-              <span
-                style={{
-                  fontSize: "1.25rem",
-                  lineHeight: "1.75rem",
-                  fontWeight: "600",
-                  color: "#353535",
-                }}
-              >
-                TechStore
-              </span>
+              <span className={`${styles.logoText}`}>TechStore</span>
             </Link>
           </div>
           {/* Search Bar - Desktop */}
-          <form onSubmit={handleSearch} style={{ width: "45%" }}>
-            <div
-              className="flex desktop-search"
-              style={{ width: "100%", position: "relative", margin: "0 10px" }}
-            >
-              <Search
-                className="icon"
-                style={{
-                  color: "#888",
-                  position: "absolute",
-                  left: "5px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                }}
-              />
+          <form onSubmit={handleSearch} className={`${styles.form}`}>
+            <div className={`flex ${styles.desktopSearch}`}>
+              <Search className={`icon ${styles.searchIcon}`} />
               <Input
                 type="text"
                 placeholder="Search products..."
-                className=" bg-color-gray"
+                className={`bg-color-gray ${styles.input}`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -84,25 +52,20 @@ export function Navbar() {
           {/* Right Side Icons */}
           <div className="flex items-center justify-between">
             {/* Cart */}
-            <Link to="/cart" style={{position: "relative"}}>
-              <ShoppingCart className="icon" style={{ marginTop: "5px" }} />
+            <Link to="/cart" className={`${styles.positionRelative}`}>
+              <ShoppingCart className={`icon ${styles.shoppingCartIcon}`} />
               {cartCount > 0 && (
-                <span className="cartCount-span">{cartCount}</span>
+                <span className={`${styles.cartCountSpan}`}>{cartCount}</span>
               )}
             </Link>
             {/* User Menu */}
             {isAuthenticated ? (
               <Link
                 to="/account"
-                className="user-menu flex items-center margin-x"
+                className={`flex items-center margin-x ${styles.userMenuLink}`}
               >
                 <div
-                  className="flex items-center justify-center bg-color-blue text-bold color-white"
-                  style={{
-                    width: "30px",
-                    height: "30px",
-                    borderRadius: "50%",
-                  }}
+                  className={`flex items-center justify-center bg-color-blue text-bold color-white ${styles.userMenu}`}
                 >
                   {user?.name?.charAt(0).toUpperCase()}
                 </div>
@@ -115,7 +78,7 @@ export function Navbar() {
               <Link
                 onClick={() => setMobileMenuOpen(false)}
                 to="/login"
-                className="link border-radius bg-color-blue padding-md button-hover"
+                className={`link border-radius bg-color-blue padding-md ${styles.buttonHover}`}
               >
                 Sign In
               </Link>
@@ -124,7 +87,7 @@ export function Navbar() {
             {/*Mobile Menu Button*/}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="menu-button margin-l border-none bg-color-white"
+              className={`${styles.menuButton} margin-l border-none bg-color-white`}
             >
               {mobileMenuOpen ? (
                 <X className="icon" />
@@ -138,25 +101,15 @@ export function Navbar() {
         {/*Mobile Menu*/}
         {mobileMenuOpen && (
           <div
-            className=" w-full mobile-menu flex flex-col justify-between margin-t padding-t-b"
-            style={{ borderTop: "1px solid #d6d3d3" }}
+            className={`w-full flex flex-col justify-between margin-t padding-t-b ${styles.mobileMenu}`}
           >
             <form>
-              <div className="flex w-full" style={{ position: "relative" }}>
-                <Search
-                  className="icon"
-                  style={{
-                    color: "#888",
-                    position: "absolute",
-                    left: "5px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                  }}
-                />
+              <div className={`w-full flex ${styles.positionRelative}`}>
+                <Search className={`icon ${styles.searchIcon}`} />
                 <Input
                   type="text"
                   placeholder="Search products..."
-                  className=" bg-color-gray"
+                  className={`bg-color-gray ${styles.input}`}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -166,7 +119,7 @@ export function Navbar() {
               <Link
                 onClick={() => setMobileMenuOpen(false)}
                 to="/products"
-                className="link w-full border-radius bg-color-white padding-md all-p-button"
+                className={`link w-full border-radius bg-color-white padding-md ${styles.allPButton}`}
               >
                 All Products
               </Link>
@@ -175,7 +128,7 @@ export function Navbar() {
               <Link
                 onClick={() => setMobileMenuOpen(false)}
                 to="/account"
-                className="link w-full border-radius bg-color-white padding-md all-p-button"
+                className={`link w-full border-radius bg-color-white padding-md ${styles.allPButton}`}
               >
                 My Account
               </Link>
@@ -184,7 +137,7 @@ export function Navbar() {
               <Link
                 onClick={() => setMobileMenuOpen(false)}
                 to="/login"
-                className="link w-full text-center border-radius bg-color-blue padding-md button-hover"
+                className={`link w-full text-center border-radius bg-color-blue padding-md ${styles.buttonHover}`}
               >
                 Sign In
               </Link>
