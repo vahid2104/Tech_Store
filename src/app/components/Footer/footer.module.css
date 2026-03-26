@@ -1,0 +1,75 @@
+.footer {
+  padding-top: 15px;
+}
+.footerGridCol {
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.logoLink {
+  width: 145px;
+}
+.logoIcon {
+  background-color: #2e57dd;
+  border-radius: 4px;
+}
+.logoText {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #353535;
+}
+.footerGridColH3 {
+  margin-top: 0;
+}
+.footerGridColUl {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.listLink {
+  color: #6b7280;
+}
+.listLink:hover {
+  color: #282b30;
+  transition: 0.5s all;
+}
+.modalsBtn {
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0;
+  color: #6b7280;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+.modalsBtn:hover {
+  color: #282b30;
+  transition: 0.5s all;
+}
+.socialIcon:hover {
+  background-color: #fff;
+  border-radius: 8px;
+  transition: 0.5s all;
+}
+.footerText {
+  border-top: 1px solid #d6d3d3;
+}
+/*Responsive Design*/
+
+@media (max-width: 1024px) {
+  .divWrap {
+    flex-wrap: wrap;
+  }
+  .footerGridCol {
+    width: 48%;
+  }
+}
+
+@media (max-width: 765px) {
+  .footerGridCol {
+    width: 100%;
+  }
+}
