@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { products } from "../../data/products";
-import "./products.css";
+import styles from "./products.module.css";
+import clsx from "clsx";
 import { Button } from "../../components/Button/Button";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { SlidersHorizontal, X } from "lucide-react";
@@ -76,11 +77,13 @@ export function Products() {
   };
 
   return (
-    <main className="w-full min-h-screen bg-color-white products-page-box">
+    <main
+      className={`w-full min-h-screen bg-color-white ${styles.productsPageBox}`}
+    >
       <div className="container">
         <div className="flex flex-wrap justify-between items-center margin-b">
           <div>
-            <h1 className="text-bold products-page-h1">
+            <h1 className={`text-bold ${styles.productsPageH1}`}>
               {searchQuery
                 ? `Search Results for "${searchQuery}"`
                 : selectedCategory
@@ -92,7 +95,11 @@ export function Products() {
             </p>
           </div>
           <div className="flex flex-wrap gap-md">
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+            <select
+              className={`${styles.select}`}
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
               <option value="featured">Featured</option>
               <option value="price-low">Price: Low to High</option>
               <option value="price-high">Price: High to Low</option>
@@ -103,7 +110,7 @@ export function Products() {
             {/* Mobile Filter Button */}
             <Button
               variant="secondary"
-              className="filter-btn"
+              className={`${styles.filterBtn}`}
               onClick={() => setShowFilters(!showFilters)}
             >
               <SlidersHorizontal />
@@ -113,20 +120,24 @@ export function Products() {
         </div>
         <div className="flex justify-between">
           {/* Sidebar Filters - Desktop */}
-          <aside className={`${showFilters ? "block" : "hidden"}`}>
+          <aside
+            className={clsx(styles.aside, showFilters && styles.asideOpen)}
+          >
             {/* Mobile Close Button */}
-            <div className="flex justify-between items-center aside-header">
+            <div
+              className={`flex justify-between items-center ${styles.asideHeader}`}
+            >
               <h2 className="text-xl font-semibold">Filters</h2>
               <button
                 onClick={() => setShowFilters(false)}
-                className="aside-close-btn"
+                className={`${styles.asideCloseBtn}`}
               >
                 <X />
               </button>
             </div>
             <div className="w-full">
               <h3 className="font-semibold">Category</h3>
-              <div className="flex flex-col" style={{ gap: "0.5rem" }}>
+              <div className="flex flex-col gap-sm">
                 {[
                   { id: "all", name: "All Products" },
                   { id: "computers", name: "Computers" },
@@ -135,10 +146,10 @@ export function Products() {
                 ].map((cat) => (
                   <label
                     key={cat.id}
-                    className="flex items-center"
-                    style={{ cursor: "pointer" }}
+                    className={`flex items-center ${styles.cursorPointer}`}
                   >
                     <input
+                      className={`${styles.inputRadio}`}
                       type="radio"
                       name="category"
                       checked={
@@ -159,6 +170,7 @@ export function Products() {
               <h3 className="font-semibold">Price Range</h3>
               <div>
                 <input
+                  className={`${styles.inputRange}`}
                   type="range"
                   min="0"
                   max="4000"
@@ -175,14 +187,14 @@ export function Products() {
             {/* Rating Filter */}
             <div className="w-full">
               <h3 className="font-semibold">Minimum Rating</h3>
-              <div className="flex flex-col" style={{ gap: "0.3rem" }}>
+              <div className="flex flex-col gap-sm">
                 {[0, 4, 4.5].map((rating) => (
                   <label
                     key={rating}
-                    className="flex items-center"
-                    style={{ cursor: "pointer" }}
+                    className={`flex items-center ${styles.cursorPointer}`}
                   >
                     <input
+                      className={`${styles.inputRadio}`}
                       type="radio"
                       name="rating"
                       checked={minRating === rating}
@@ -198,8 +210,7 @@ export function Products() {
             {/* Clear Filters */}
             <Button
               variant="secondary"
-              className="w-full"
-              style={{ margin: "1rem 0", backgroundColor: "#e3e1e1" }}
+              className={`w-full margin-y ${styles.clearBtn}`}
               onClick={clearFilters}
             >
               Clear All Filters
@@ -207,18 +218,15 @@ export function Products() {
           </aside>
 
           {/* Product Grid */}
-          <div className="flex products-grid-div">
+          <div className={`flex ${styles.productsGridDiv}`}>
             {filteredProducts.length > 0 ? (
-              <div
-                className="w-full flex flex-wrap items-center justify-center"
-                style={{ gap: "1.5rem" }}
-              >
+              <div className="w-full flex flex-wrap justify-between gap-sm">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16" style={{ margin: "0 auto" }}>
+              <div className={`text-center py-16 ${styles.noFoundDiv}`}>
                 <p className="text-muted-foreground text-lg">
                   No products found matching your criteria.
                 </p>
