@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./contact.css";
+import styles from "./contact.module.css";
 import { CheckCircle, Mail, MapPin, Phone, Send } from "lucide-react";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button/Button";
@@ -32,14 +32,11 @@ export default function Contact() {
   };
 
   return (
-    <div
-      className="min-h-screen bg-color-white"
-      style={{ paddingBottom: "2rem" }}
-    >
+    <div className={`min-h-screen bg-color-white ${styles.mainBox}`}>
       {/* Hero Section */}
-      <div className="w-full gradient-header" style={{ padding: "2rem 0" }}>
+      <div className={`w-full gradient-header ${styles.heroSection}`}>
         <div className="container flex justify-center">
-          <div className="text-center" style={{ maxWidth: "850px" }}>
+          <div className={`text-center ${styles.heroText}`}>
             <h1 className="text-4xl">Get In Touch</h1>
             <p className="text-lg color-foreground">
               Have a question or feedback? We'd love to hear from you. Send us a
@@ -50,12 +47,11 @@ export default function Contact() {
       </div>
 
       <div
-        className="container flex flex-col items-center gap-lg"
-        style={{ padding: "4rem 20px" }}
+        className={`container flex flex-col items-center gap-lg ${styles.containerBox}`}
       >
-        <div className="flex flex-wrap gap-lg justify-between">
+        <div className="flex flex-wrap gap-md justify-between">
           {/* Contact Informations */}
-          <div className="flex flex-col gap-lg contact-info">
+          <div className={`flex flex-col gap-lg ${styles.contactInfo}`}>
             <div>
               <h2 className="text-2xl">Contact Informations</h2>
               <p className="color-foreground">
@@ -68,12 +64,15 @@ export default function Contact() {
             <div className="flex flex-col gap-md">
               {/* Email */}
               <div className="box-border border-radius padding flex gap-md">
-                <div className="icon-card">
-                  <Mail style={{ width: "30px", height: "30px" }} />
+                <div className={`${styles.iconCard}`}>
+                  <Mail className={`${styles.infoIcons}`} />
                 </div>
                 <div className="flex flex-col gap-sm">
                   <h3 className="margin-block-none">Email Us</h3>
-                  <a href="mailto:support@techstore.com" className="contact-a">
+                  <a
+                    href="mailto:support@techstore.com"
+                    className={`${styles.contactA}`}
+                  >
                     support@techstore.com
                   </a>
                   <p className="text-sm color-foreground margin-block-none">
@@ -83,12 +82,12 @@ export default function Contact() {
               </div>
               {/* Phone */}
               <div className="box-border border-radius padding flex gap-md">
-                <div className="icon-card">
-                  <Phone style={{ width: "30px", height: "30px" }} />
+                <div className={`${styles.iconCard}`}>
+                  <Phone className={`${styles.infoIcons}`} />
                 </div>
                 <div className="flex flex-col gap-sm">
                   <h3 className="margin-block-none">Call Us</h3>
-                  <a href="tel:+18008324786" className="contact-a">
+                  <a href="tel:+18008324786" className={`${styles.contactA}`}>
                     1-800-TECH-STORE
                   </a>
                   <p className="text-sm color-foreground margin-block-none">
@@ -98,8 +97,8 @@ export default function Contact() {
               </div>
               {/* Address */}
               <div className="box-border border-radius padding flex gap-md">
-                <div className="icon-card">
-                  <MapPin style={{ width: "30px", height: "30px" }} />
+                <div className={`${styles.iconCard}`}>
+                  <MapPin className={`${styles.infoIcons}`} />
                 </div>
                 <div className="flex flex-col gap-sm">
                   <h3 className="margin-block-none">Visit Us</h3>
@@ -133,27 +132,15 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="contact-form box-border border-radius">
+          <div className={`${styles.contactForm} box-border border-radius`}>
             <h2 className="margin-block-none">Send Us a Message</h2>
 
             {isSubmitted ? (
               <div className="w-full h-full flex flex-col items-center justify-center padding">
                 <div
-                  className="flex items-center justify-center"
-                  style={{
-                    width: "6rem",
-                    height: "6rem",
-                    backgroundColor: "rgb(169, 224, 178)",
-                    borderRadius: "9999px",
-                  }}
+                  className={`flex items-center justify-center ${styles.successIconDiv}`}
                 >
-                  <CheckCircle
-                    style={{
-                      width: "4rem",
-                      height: "4rem",
-                      color: "rgb(48, 136, 62)",
-                    }}
-                  />
+                  <CheckCircle className={`${styles.successIcon}`} />
                 </div>
                 <h3 className="text-xl">Message Sent Successfully!</h3>
                 <p className="color-foreground text-center">
@@ -163,7 +150,7 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-md">
-                <div className="flex gap-md responsive-input">
+                <div className={`flex gap-md ${styles.responsiveInput}`}>
                   <Input
                     label="Your Name"
                     type="text"
@@ -205,7 +192,7 @@ export default function Contact() {
                     Message
                   </label>
                   <textarea
-                    className="w-full box-border border-radius padding margin-t text-lg border-box"
+                    className={`w-full box-border border-radius padding margin-t text-lg border-box ${styles.textarea}`}
                     id="textarea"
                     value={formData.message}
                     onChange={(e) =>
@@ -234,7 +221,7 @@ export default function Contact() {
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="spinner" />
+                      <div className={`${styles.spinner}`} />
                       Sending...
                     </>
                   ) : (
@@ -249,9 +236,9 @@ export default function Contact() {
           </div>
         </div>
         {/* FAQ Section */}
-        <div className="flex flex-col gap-lg faq-section">
+        <div className={`flex flex-col gap-lg ${styles.faqSection}`}>
           <div className="text-center">
-            <h2 className="margin-block-none" style={{ fontSize: "2rem" }}>
+            <h2 className={`margin-block-none ${styles.faqSectionTitle}`}>
               Frequently Asked Questions
             </h2>
             <p className="color-foreground">
@@ -260,7 +247,9 @@ export default function Contact() {
           </div>
 
           <div className="flex flex-wrap justify-between gap-md">
-            <div className="box-border border-radius padding faq-boxes">
+            <div
+              className={`box-border border-radius padding ${styles.faqBoxes}`}
+            >
               <h3 className="margin-block-none">
                 What are your shipping options?
               </h3>
@@ -269,14 +258,18 @@ export default function Contact() {
                 shipping. Free standard shipping on orders over $50.
               </p>
             </div>
-            <div className="box-border border-radius padding faq-boxes">
+            <div
+              className={`box-border border-radius padding ${styles.faqBoxes}`}
+            >
               <h3 className="margin-block-none">What is your return policy?</h3>
               <p className="text-sm color-foreground">
                 We accept returns within 30 days of delivery. Items must be in
                 original, unused condition with all packaging.
               </p>
             </div>
-            <div className="box-border border-radius padding faq-boxes">
+            <div
+              className={`box-border border-radius padding ${styles.faqBoxes}`}
+            >
               <h3 className="margin-block-none">
                 Do you offer warranty on products?
               </h3>
@@ -285,7 +278,9 @@ export default function Contact() {
                 options are available at checkout.
               </p>
             </div>
-            <div className="box-border border-radius padding faq-boxes">
+            <div
+              className={`box-border border-radius padding ${styles.faqBoxes}`}
+            >
               <h3 className="margin-block-none">How can I track my order?</h3>
               <p className="text-sm color-foreground">
                 Once shipped, you'll receive a tracking number via email. You

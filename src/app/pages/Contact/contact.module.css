@@ -1,12 +1,27 @@
-.contact-a {
+.mainBox {
+  padding-bottom: 2rem;
+}
+.heroSection {
+  padding: 2rem 0;
+}
+.heroText {
+  max-width: 850px;
+}
+.containerBox {
+  padding: 4rem 20px;
+}
+.contactA {
   font-size: 15px;
   color: #6b7280;
   transition: 0.5s all;
 }
-.contact-a:hover {
+.contactA:hover {
   color: #2e57dd;
 }
-.icon-card {
+.contactInfo {
+  width: 35%;
+}
+.iconCard {
   width: 50px;
   height: 50px;
   background-color: #6885e638;
@@ -16,10 +31,22 @@
   color: #2e57dd;
   border-radius: 0.7rem;
 }
-.contact-info {
-  width: 35%;
+.infoIcons {
+  width: 30px;
+  height: 30px;
 }
-.contact-form {
+.successIconDiv {
+  width: 6rem;
+  height: 6rem;
+  background-color: rgb(169, 224, 178);
+  border-radius: 9999px;
+}
+.successIcon {
+  width: 4rem;
+  height: 4rem;
+  color: rgb(48, 136, 62);
+}
+.contactForm {
   width: 62%;
   height: fit-content;
   padding: 2rem;
@@ -31,11 +58,11 @@
   -moz-box-shadow: 2px 12px 24px 1px rgba(66, 68, 90, 0.34);
   box-shadow: 2px 12px 24px 1px rgba(66, 68, 90, 0.34);
 }
-textarea {
+.textarea {
   outline: none;
   resize: none;
 }
-textarea:focus {
+.textarea:focus {
   outline: 2px solid #2e57dd;
 }
 .spinner {
@@ -57,37 +84,42 @@ textarea:focus {
   }
 }
 
-.faq-section {
+.faqSection {
   max-width: 1000px;
 }
-.faq-boxes {
+.faqSectionTitle {
+  font-size: 2rem;
+}
+.faqBoxes {
   width: 45%;
+  margin-bottom: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 /* Responsive Design */
 
 @media (max-width: 1024px) {
-  .contact-info {
+  .contactInfo {
     width: 100%;
   }
-  .contact-form {
+  .contactForm {
     width: 100%;
   }
-  .faq-section {
+  .faqSection {
     width: 100%;
   }
-  .faq-boxes {
+  .faqBoxes {
     width: 44%;
   }
 }
 @media (max-width: 765px) {
-  .faq-boxes {
+  .faqBoxes {
     width: 100%;
   }
 }
 
 @media (max-width: 640px) {
-  .responsive-input {
+  .responsiveInput {
     flex-direction: column;
   }
 }
