@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Layout from './Layout.tsx'
+import Layout from "./Layout.tsx";
 import Home from "./pages/Home/Home.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Login from "./pages/Login/Login.tsx";
@@ -16,75 +16,80 @@ import Shipping from "./pages/Shipping/Shipping.tsx";
 import Returns from "./pages/Returns/Returns.tsx";
 import About from "./pages/About/About.tsx";
 import Careers from "./pages/Careers/Careers.tsx";
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
     {
-        path: '/',
-        Component: Layout,
-        children: [
-            {
-                index: true,
-                Component: Home,
-            },
-            {
-                path: 'login',
-                Component: Login,
-            },
-            {
-                path: 'register',
-                Component: Register,
-            },
-            {
-                path: 'account',
-                Component: Account,
-            },
-            {
-                path: 'products',
-                Component: Products,
-            },
-            {
-                path: 'products/:id',
-                Component: ProductDetails,
-            },
-            {
-                path: 'cart',
-                Component: Cart,
-            },
-            {
-                path: 'checkout',
-                Component: Checkout,
-            },
-            {
-                path: 'order-success',
-                Component: OrderSuccess,
-            },
-            {
-                path: 'contact',
-                Component: Contact,
-            },
-            {
-                path: 'help',
-                Component: HelpCenter,
-            },
-            {
-                path: 'shipping',
-                Component: Shipping,
-            },
-            {
-                path: 'returns',
-                Component: Returns,
-            },
-            {
-                path: 'about',
-                Component: About,
-            },
-            {
-                path: 'careers',
-                Component: Careers,
-            },
-            {
-                path: '*',
-                Component: NotFound,
-            }
-        ]
-    }
-])
+      path: "/",
+      Component: Layout,
+      children: [
+        {
+          index: true,
+          Component: Home,
+        },
+        {
+          path: "login",
+          Component: Login,
+        },
+        {
+          path: "register",
+          Component: Register,
+        },
+        {
+          path: "account",
+          Component: Account,
+        },
+        {
+          path: "products",
+          Component: Products,
+        },
+        {
+          path: "products/:id",
+          Component: ProductDetails,
+        },
+        {
+          path: "cart",
+          Component: Cart,
+        },
+        {
+          path: "checkout",
+          Component: Checkout,
+        },
+        {
+          path: "order-success",
+          Component: OrderSuccess,
+        },
+        {
+          path: "contact",
+          Component: Contact,
+        },
+        {
+          path: "help",
+          Component: HelpCenter,
+        },
+        {
+          path: "shipping",
+          Component: Shipping,
+        },
+        {
+          path: "returns",
+          Component: Returns,
+        },
+        {
+          path: "about",
+          Component: About,
+        },
+        {
+          path: "careers",
+          Component: Careers,
+        },
+        {
+          path: "*",
+          Component: NotFound,
+        },
+      ],
+    },
+  ],
+  {
+    basename: "/Tech_Store",
+  },
+);
