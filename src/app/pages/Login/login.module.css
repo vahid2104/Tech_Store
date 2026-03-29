@@ -1,0 +1,32 @@
+.mainBox {
+  max-width: 450px;
+  padding: 0 3rem;
+}
+.logoDiv {
+  width: 145px;
+}
+.loginIcon {
+  background-color: #2e57dd;
+  border-radius: 4px;
+}
+.loginText {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #353535;
+}
+.formDiv {
+  padding: 20px;
+}
+.authErrorDiv {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+.checkboxInput {
+  accent-color: #2e57dd;
+}

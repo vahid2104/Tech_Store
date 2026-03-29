@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
-import { Input } from "../components/Input";
-import { Button } from "../components/Button/Button";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button/Button";
 import { Formik } from "formik";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
+import styles from "./login.module.css";
 
 type FormValues = {
   email: string;
@@ -16,38 +17,22 @@ function Login() {
   const [authError, setAuthError] = useState<string | null>(null);
   const { loginWithGoogle } = useAuth();
   return (
-    <div
-      className="flex items-center justify-center min-h-screen"
-    >
-      <div
-        className="w-full flex flex-col items-center"
-        style={{ maxWidth: "28rem", padding: "0 3rem" }}
-      >
+    <div className="flex items-center justify-center min-h-screen">
+      <div className={`w-full flex flex-col items-center ${styles.mainBox}`}>
         {/*LOGO*/}
         <div className="flex items-center justify-between margin-b">
           <Link
             to="/"
-            className="flex items-center justify-between link"
-            style={{ width: "145px" }}
+            className={`flex items-center justify-between link ${styles.logoDiv}`}
           >
-            <div style={{ backgroundColor: "#2e57dd", borderRadius: "4px" }}>
+            <div className={`${styles.loginIcon}`}>
               <ShoppingCart className="icon icon-white" />
             </div>
-            <span
-              style={{
-                fontSize: "1.25rem",
-                lineHeight: "1.75rem",
-                fontWeight: "600",
-                color: "#353535",
-              }}
-            >
-              TechStore
-            </span>
+            <span className={`${styles.loginText}`}>TechStore</span>
           </Link>
         </div>
         <div
-          className="w-full flex flex-col border-radius border-shadow"
-          style={{ padding: "20px" }}
+          className={`w-full flex flex-col border-radius border-shadow ${styles.formDiv}`}
         >
           <h1 className="text-center text-2xl">Welcome Back</h1>
           <Formik<FormValues>
@@ -97,19 +82,7 @@ function Login() {
             }) => (
               <form className="w-full" onSubmit={handleSubmit}>
                 {authError && (
-                  <div
-                    style={{
-                      backgroundColor: "#fee2e2",
-                      color: "#b91c1c",
-                      padding: "10px",
-                      borderRadius: "6px",
-                      marginTop: "10px",
-                      marginBottom: "10px",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {authError}
-                  </div>
+                  <div className={`${styles.authErrorDiv}`}>{authError}</div>
                 )}
                 <Input
                   label="Email"
@@ -137,7 +110,10 @@ function Login() {
 
                 <div className="flex items-center justify-between margin-t">
                   <label>
-                    <input type="checkbox" style={{ accentColor: "#2E57DD" }} />
+                    <input
+                      className={`${styles.checkboxInput}`}
+                      type="checkbox"
+                    />
                     <span>Remember me</span>
                   </label>
                   <a href="#" className="text-sm color-primary link-hover">
