@@ -7,7 +7,7 @@ import {
   Shield,
   Headphones,
 } from "lucide-react";
-import "./helpCenter.css";
+import styles from "./helpCenter.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -88,7 +88,7 @@ export default function HelpCenter() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="w-full gradient-header" style={{ padding: "5rem 0" }}>
+      <div className={`w-full gradient-header ${styles.heroSection}`}>
         <div className="container flex flex-col items-center text-center">
           <h1 className="text-4xl margin-block-none">How Can We Help?</h1>
           <p className="text-lg color-foreground">
@@ -96,11 +96,11 @@ export default function HelpCenter() {
           </p>
 
           {/* Search Bar */}
-          <div className="w-full margin-t" style={{ maxWidth: "800px" }}>
-            <div className="search-div">
-              <Search className="search-icon" />
+          <div className={`w-full margin-t ${styles.searchDiv}`}>
+            <div className={`${styles.searchInputDiv}`}>
+              <Search className={`${styles.searchIcon}`} />
               <input
-                className="search-input"
+                className={`${styles.searchInput}`}
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -111,24 +111,29 @@ export default function HelpCenter() {
         </div>
       </div>
 
-      <div className="container" style={{ padding: "4rem 20px" }}>
+      <div className={`container ${styles.containerBox}`}>
         {/* Help  Categories */}
         <div className="flex flex-wrap justify-between">
           {categories.map((category, index) => {
             const Icon = category.icon;
             return (
-              <div key={index} className="help-box box-border box-shadow">
-                <div className="flex justify-center items-center help-icon-div">
-                  <Icon style={{ color: "#2e57dd" }} />
+              <div
+                key={index}
+                className={`${styles.helpBox} box-border box-shadow`}
+              >
+                <div
+                  className={`flex justify-center items-center ${styles.helpIconDiv}`}
+                >
+                  <Icon className="color-primary" />
                 </div>
                 <h3 className="text-xl margin-block-none">{category.title}</h3>
                 <p className="text-md color-foreground margin-block-none">
                   {category.description}
                 </p>
-                <ul className="help-ul">
+                <ul className={`${styles.helpUl}`}>
                   {category.articles.map((article, idx) => (
                     <li key={idx}>
-                      <a href={article.link} className="help-a">
+                      <a href={article.link} className={`${styles.helpA}`}>
                         {article.title}
                       </a>
                     </li>
@@ -140,19 +145,19 @@ export default function HelpCenter() {
         </div>
 
         {/* Contact Support */}
-        <div className="box-border contact-div">
+        <div className={`box-border ${styles.contactDiv}`}>
           <h2 className="text-2xl margin-block-none">Still Need Help?</h2>
-          <p className="color-foreground" style={{ maxWidth: "500px" }}>
+          <p className={`color-foreground ${styles.contactP}`}>
             Can't find what you're looking for? Our support team is ready to
             assist you with any questions or concerns.
           </p>
           <div className="w-full flex flex-wrap items-center justify-center gap-lg">
-            <Link to="/contact" className="contact-support-link">
+            <Link to="/contact" className={`${styles.contactSupportLink}`}>
               Contact Support
             </Link>
             <a
               href="mailto:support@techstore.com"
-              className="contact-support-a"
+              className={`${styles.contactSupportA}`}
             >
               Email Us
             </a>
