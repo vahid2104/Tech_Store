@@ -29,7 +29,7 @@ export default function Cart() {
   }
   return (
     <div className="min-h-screen bg-color-white">
-      <div className={`${styles.containerBox}`}>
+      <div className={`container ${styles.containerBox}`}>
         <h1 className={`text-3xl font-bold ${styles.mainTitle}`}>
           Shopping Cart
         </h1>
