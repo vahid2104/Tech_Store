@@ -11,36 +11,37 @@ type FormValues = {
   email: string;
   password: string;
 };
+
 function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const [authError, setAuthError] = useState<string | null>(null);
-  const { loginWithGoogle } = useAuth();
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className={`w-full flex flex-col items-center ${styles.mainBox}`}>
-        {/*LOGO*/}
         <div className="flex items-center justify-between margin-b">
           <Link
             to="/"
             className={`flex items-center justify-between link ${styles.logoDiv}`}
           >
-            <div className={`${styles.loginIcon}`}>
+            <div className={styles.loginIcon}>
               <ShoppingCart className="icon icon-white" />
             </div>
-            <span className={`${styles.loginText}`}>TechStore</span>
+            <span className={styles.loginText}>TechStore</span>
           </Link>
         </div>
+
         <div
           className={`w-full flex flex-col border-radius border-shadow ${styles.formDiv}`}
         >
           <h1 className="text-center text-2xl">Welcome Back</h1>
+
           <Formik<FormValues>
             initialValues={{ email: "", password: "" }}
             validate={(values) => {
               const errors: Partial<Record<keyof FormValues, string>> = {};
 
-              // Email validation
               if (!values.email) {
                 errors.email = "Required";
               } else if (
@@ -49,7 +50,6 @@ function Login() {
                 errors.email = "Invalid email address";
               }
 
-              // Password validation
               if (!values.password) {
                 errors.password = "Required";
               } else if (values.password.length < 6) {
@@ -59,12 +59,16 @@ function Login() {
               return errors;
             }}
             onSubmit={async (values, { setSubmitting }) => {
-              setAuthError(null);
               try {
+                setAuthError(null);
                 await login(values.email, values.password);
                 navigate("/");
-              } catch {
-                setAuthError("Invalid email or password.");
+              } catch (error: unknown) {
+                if (error instanceof Error) {
+                  setAuthError(error.message);
+                } else {
+                  setAuthError("Login failed. Please try again.");
+                }
               } finally {
                 setSubmitting(false);
               }
@@ -78,12 +82,12 @@ function Login() {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form className="w-full" onSubmit={handleSubmit}>
                 {authError && (
-                  <div className={`${styles.authErrorDiv}`}>{authError}</div>
+                  <div className={styles.authErrorDiv}>{authError}</div>
                 )}
+
                 <Input
                   label="Email"
                   type="email"
@@ -110,23 +114,22 @@ function Login() {
 
                 <div className="flex items-center justify-between margin-t">
                   <label>
-                    <input
-                      className={`${styles.checkboxInput}`}
-                      type="checkbox"
-                    />
+                    <input className={styles.checkboxInput} type="checkbox" />
                     <span>Remember me</span>
                   </label>
+
                   <a href="#" className="text-sm color-primary link-hover">
                     Forgot password?
                   </a>
                 </div>
+
                 <Button
                   variant="primary"
                   size="lg"
                   className="w-full margin-t margin-b"
                   disabled={isSubmitting}
                 >
-                  Sign In
+                  {isSubmitting ? "Signing In..." : "Sign In"}
                 </Button>
               </form>
             )}
@@ -143,18 +146,20 @@ function Login() {
                   style={{ borderTop: "1px solid #6b7280" }}
                 ></div>
               </div>
+
               <div
                 className="flex justify-center"
                 style={{ position: "relative", fontSize: "0.875rem" }}
               >
                 <span
-                  className=" bg-color-white color-foreground"
+                  className="bg-color-white color-foreground"
                   style={{ paddingLeft: "0.5rem", paddingRight: "0.5rem" }}
                 >
                   Or continue with
                 </span>
               </div>
             </div>
+
             <Button
               size="lg"
               variant="secondary"
@@ -164,8 +169,12 @@ function Login() {
                   setAuthError(null);
                   await loginWithGoogle();
                   navigate("/");
-                } catch {
-                  setAuthError("Google sign-in failed. Please try again.");
+                } catch (error: unknown) {
+                  if (error instanceof Error) {
+                    setAuthError(error.message);
+                  } else {
+                    setAuthError("Google sign-in failed. Please try again.");
+                  }
                 }
               }}
             >
@@ -197,7 +206,8 @@ function Login() {
               Continue with Google
             </Button>
           </div>
-          <p className=" text-center text-sm color-foreground">
+
+          <p className="text-center text-sm color-foreground">
             Don't have an account?{" "}
             <Link
               to="/register"

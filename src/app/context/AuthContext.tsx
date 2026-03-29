@@ -1,8 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import type { AuthContextType } from "../types/auth.types";
 import type { UserType } from "../types/user.types";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import {
+  GoogleAuthProvider,
+  signInWithPopup,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -49,8 +51,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const googleProvider = new GoogleAuthProvider();
 
   const loginWithGoogle = async () => {
-    await signInWithPopup(auth, googleProvider);
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        switch (error.code) {
+          case "auth/popup-closed-by-user":
+            throw new Error("Google sign-in was cancelled.");
+          case "auth/popup-blocked":
+            throw new Error("Popup was blocked by the browser.");
+          default:
+            throw new Error("Google sign-in failed. Please try again.");
+        }
+      }
+
+      throw new Error("Something went wrong. Please try again.");
+    }
   };
+
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
@@ -67,24 +85,68 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     return () => unsub();
   }, []);
-  const login = async (email: string, password: string) => {
-    await signInWithEmailAndPassword(auth, email, password);
-  };
-  const register = async (name: string, email: string, password: string) => {
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(cred.user, { displayName: name });
 
-    // manual update for instant UI reflect
-    setUser({
-      id: cred.user.uid,
-      name,
-      email,
-    });
+  const login = async (email: string, password: string) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        switch (error.code) {
+          case "auth/invalid-credential":
+          case "auth/user-not-found":
+          case "auth/wrong-password":
+            throw new Error("Invalid email or password.");
+          case "auth/invalid-email":
+            throw new Error("Please enter a valid email address.");
+          case "auth/too-many-requests":
+            throw new Error("Too many attempts. Please try again later.");
+          default:
+            throw new Error("Login failed. Please try again.");
+        }
+      }
+
+      throw new Error("Something went wrong. Please try again.");
+    }
   };
+
+  const register = async (name: string, email: string, password: string) => {
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(cred.user, { displayName: name });
+
+      setUser({
+        id: cred.user.uid,
+        name,
+        email,
+      });
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            throw new Error("An account with this email already exists.");
+          case "auth/invalid-email":
+            throw new Error("Please enter a valid email address.");
+          case "auth/weak-password":
+            throw new Error("Password should be at least 6 characters.");
+          default:
+            throw new Error("Registration failed. Please try again.");
+        }
+      }
+
+      throw new Error("Something went wrong. Please try again.");
+    }
+  };
+
   const logout = async () => {
-    await signOut(auth);
+    try {
+      await signOut(auth);
+    } catch {
+      throw new Error("Logout failed. Please try again.");
+    }
   };
+
   if (loading) return <Loading />;
+
   return (
     <AuthContext.Provider
       value={{

@@ -20,8 +20,7 @@ type FormValues = {
 
 function Register() {
   const navigate = useNavigate();
-  const { register } = useAuth();
-  const { loginWithGoogle } = useAuth();
+  const { register, loginWithGoogle } = useAuth();
   const [authError, setAuthError] = useState<string | null>(null);
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
@@ -29,22 +28,23 @@ function Register() {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className={`w-full flex flex-col items-center ${styles.mainBox}`}>
-        {/*LOGO*/}
         <div className="flex items-center justify-between margin-b">
           <Link
             to="/"
             className={`flex items-center justify-between gap-md link ${styles.loginDiv}`}
           >
-            <div className={`${styles.loginIcon}`}>
+            <div className={styles.loginIcon}>
               <ShoppingCart className="icon icon-white" />
             </div>
-            <span className={`${styles.loginText}`}>TechStore</span>
+            <span className={styles.loginText}>TechStore</span>
           </Link>
         </div>
+
         <div
           className={`w-full flex flex-col border-radius border-shadow ${styles.formDiv}`}
         >
           <h1 className="text-center text-2xl">Create Account</h1>
+
           <Formik<FormValues>
             initialValues={{
               fullName: "",
@@ -56,8 +56,15 @@ function Register() {
             validationSchema={registerSchema}
             onSubmit={async (values, { setSubmitting }) => {
               try {
+                setAuthError(null);
                 await register(values.fullName, values.email, values.password);
                 navigate("/");
+              } catch (error: unknown) {
+                if (error instanceof Error) {
+                  setAuthError(error.message);
+                } else {
+                  setAuthError("Registration failed. Please try again.");
+                }
               } finally {
                 setSubmitting(false);
               }
@@ -71,12 +78,12 @@ function Register() {
               handleBlur,
               handleSubmit,
               isSubmitting,
-              /* and other goodies */
             }) => (
               <form className="w-full" onSubmit={handleSubmit}>
-                {authError ? (
-                  <div className={`${styles.authErrorDiv}`}>{authError}</div>
-                ) : null}
+                {authError && (
+                  <div className={styles.authErrorDiv}>{authError}</div>
+                )}
+
                 <Input
                   label="Full Name"
                   type="text"
@@ -88,6 +95,7 @@ function Register() {
                   value={values.fullName}
                   error={touched.fullName ? errors.fullName : undefined}
                 />
+
                 <Input
                   label="Email"
                   type="email"
@@ -99,6 +107,7 @@ function Register() {
                   value={values.email}
                   error={touched.email ? errors.email : undefined}
                 />
+
                 <Input
                   label="Password"
                   type="password"
@@ -107,8 +116,10 @@ function Register() {
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={values.password}
                   error={touched.password ? errors.password : undefined}
                 />
+
                 <Input
                   label="Confirm Password"
                   type="password"
@@ -117,12 +128,13 @@ function Register() {
                   name="confirmPassword"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={values.confirmPassword}
                   error={
                     touched.confirmPassword ? errors.confirmPassword : undefined
                   }
                 />
 
-                <div className="flex flex-col  margin-t">
+                <div className="flex flex-col margin-t">
                   <label>
                     <input
                       name="term"
@@ -130,36 +142,31 @@ function Register() {
                       onBlur={handleBlur}
                       checked={values.term}
                       type="checkbox"
-                      className={`${styles.checkboxInput}`}
+                      className={styles.checkboxInput}
                     />
                     <span>
                       I agree to the{" "}
                       <button
+                        type="button"
                         className={`border-none bg-color-white text-md color-primary link-hover ${styles.modalsBtn}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowTermsModal(true);
-                        }}
+                        onClick={() => setShowTermsModal(true)}
                       >
                         Terms of Service
                       </button>{" "}
                       and{" "}
                       <button
+                        type="button"
                         className={`border-none bg-color-white text-md color-primary link-hover ${styles.modalsBtn}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowPrivacyModal(true);
-                        }}
+                        onClick={() => setShowPrivacyModal(true)}
                       >
                         Privacy Policy
                       </button>
                     </span>
                   </label>
-                  {touched.term && errors.term ? (
-                    <>
-                      <p className={`${styles.errorsTerm}`}>{errors.term}</p>
-                    </>
-                  ) : null}
+
+                  {touched.term && errors.term && (
+                    <p className={styles.errorsTerm}>{errors.term}</p>
+                  )}
                 </div>
 
                 <Button
@@ -168,7 +175,7 @@ function Register() {
                   className="w-full margin-t margin-b"
                   disabled={isSubmitting}
                 >
-                  Sign Up
+                  {isSubmitting ? "Signing Up..." : "Sign Up"}
                 </Button>
               </form>
             )}
@@ -185,18 +192,20 @@ function Register() {
                   style={{ borderTop: "1px solid #6b7280" }}
                 ></div>
               </div>
+
               <div
                 className="flex justify-center"
                 style={{ position: "relative", fontSize: "0.875rem" }}
               >
                 <span
-                  className=" bg-color-white color-foreground"
+                  className="bg-color-white color-foreground"
                   style={{ paddingLeft: "0.5rem", paddingRight: "0.5rem" }}
                 >
                   Or continue with
                 </span>
               </div>
             </div>
+
             <Button
               size="lg"
               variant="secondary"
@@ -206,8 +215,12 @@ function Register() {
                   setAuthError(null);
                   await loginWithGoogle();
                   navigate("/");
-                } catch {
-                  setAuthError("Google sign-in failed. Please try again.");
+                } catch (error: unknown) {
+                  if (error instanceof Error) {
+                    setAuthError(error.message);
+                  } else {
+                    setAuthError("Google sign-in failed. Please try again.");
+                  }
                 }
               }}
             >
@@ -239,7 +252,8 @@ function Register() {
               Continue with Google
             </Button>
           </div>
-          <p className=" text-center text-sm color-foreground">
+
+          <p className="text-center text-sm color-foreground">
             Already have an account?{" "}
             <Link
               to="/login"
@@ -249,7 +263,7 @@ function Register() {
             </Link>
           </p>
         </div>
-        {/* Modals */}
+
         <TermsModal
           isOpen={showTermsModal}
           onClose={() => setShowTermsModal(false)}
