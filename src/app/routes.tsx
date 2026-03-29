@@ -3,7 +3,7 @@ import Layout from './Layout.tsx'
 import Home from "./pages/Home/Home.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Login from "./pages/Login/Login.tsx";
-import Register from "./pages/Register.tsx";
+import Register from "./pages/Register/Register.tsx";
 import Account from "./pages/Account/Account.tsx";
 import { Products } from "./pages/Products/Products.tsx";
 import Cart from "./pages/Cart/Cart.tsx";

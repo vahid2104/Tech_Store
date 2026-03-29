@@ -1,13 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
-import { Button } from "../components/Button/Button";
-import { Input } from "../components/Input";
+import { Button } from "../../components/Button/Button";
+import { Input } from "../../components/Input";
 import { Formik } from "formik";
-import { registerSchema } from "../schemas/RegisterFormSchema";
-import { useAuth } from "../hooks/useAuth";
+import { registerSchema } from "../../schemas/RegisterFormSchema";
+import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
-import TermsModal from "../components/TermsModal/TermsModal";
-import PrivacyModal from "../components/PrivacyModal/PrivacyModal";
+import TermsModal from "../../components/TermsModal/TermsModal";
+import PrivacyModal from "../../components/PrivacyModal/PrivacyModal";
+import styles from "./register.module.css";
+
 type FormValues = {
   fullName: string;
   email: string;
@@ -25,39 +27,22 @@ function Register() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   return (
-    <div
-      className="flex items-center justify-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <div
-        className="w-full flex flex-col items-center"
-        style={{ maxWidth: "28rem", padding: "0 3rem" }}
-      >
+    <div className="flex items-center justify-center min-h-screen">
+      <div className={`w-full flex flex-col items-center ${styles.mainBox}`}>
         {/*LOGO*/}
         <div className="flex items-center justify-between margin-b">
           <Link
             to="/"
-            className="flex items-center justify-between link"
-            style={{ width: "145px" }}
+            className={`flex items-center justify-between gap-md link ${styles.loginDiv}`}
           >
-            <div style={{ backgroundColor: "#2e57dd", borderRadius: "4px" }}>
+            <div className={`${styles.loginIcon}`}>
               <ShoppingCart className="icon icon-white" />
             </div>
-            <span
-              style={{
-                fontSize: "1.25rem",
-                lineHeight: "1.75rem",
-                fontWeight: "600",
-                color: "#353535",
-              }}
-            >
-              TechStore
-            </span>
+            <span className={`${styles.loginText}`}>TechStore</span>
           </Link>
         </div>
         <div
-          className="w-full flex flex-col border-radius border-shadow"
-          style={{ padding: "20px" }}
+          className={`w-full flex flex-col border-radius border-shadow ${styles.formDiv}`}
         >
           <h1 className="text-center text-2xl">Create Account</h1>
           <Formik<FormValues>
@@ -90,19 +75,7 @@ function Register() {
             }) => (
               <form className="w-full" onSubmit={handleSubmit}>
                 {authError ? (
-                  <div
-                    style={{
-                      backgroundColor: "#fee2e2",
-                      color: "#b91c1c",
-                      padding: "10px",
-                      borderRadius: "6px",
-                      marginTop: "10px",
-                      marginBottom: "10px",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {authError}
-                  </div>
+                  <div className={`${styles.authErrorDiv}`}>{authError}</div>
                 ) : null}
                 <Input
                   label="Full Name"
@@ -157,13 +130,12 @@ function Register() {
                       onBlur={handleBlur}
                       checked={values.term}
                       type="checkbox"
-                      style={{ accentColor: "#2E57DD", marginRight: "10px" }}
+                      className={`${styles.checkboxInput}`}
                     />
                     <span>
                       I agree to the{" "}
                       <button
-                        className="border-none bg-color-white text-md color-primary link-hover"
-                        style={{ cursor: "pointer", fontWeight: "600" }}
+                        className={`border-none bg-color-white text-md color-primary link-hover ${styles.modalsBtn}`}
                         onClick={(e) => {
                           e.preventDefault();
                           setShowTermsModal(true);
@@ -173,8 +145,7 @@ function Register() {
                       </button>{" "}
                       and{" "}
                       <button
-                        className="border-none bg-color-white text-md color-primary link-hover"
-                        style={{ cursor: "pointer", fontWeight: "600" }}
+                        className={`border-none bg-color-white text-md color-primary link-hover ${styles.modalsBtn}`}
                         onClick={(e) => {
                           e.preventDefault();
                           setShowPrivacyModal(true);
@@ -186,9 +157,7 @@ function Register() {
                   </label>
                   {touched.term && errors.term ? (
                     <>
-                      <p style={{ fontSize: "0.875rem", color: "#ef4444" }}>
-                        {errors.term}
-                      </p>
+                      <p className={`${styles.errorsTerm}`}>{errors.term}</p>
                     </>
                   ) : null}
                 </div>
@@ -274,8 +243,7 @@ function Register() {
             Already have an account?{" "}
             <Link
               to="/login"
-              className="color-primary link-hover"
-              style={{ fontWeight: "600" }}
+              className="color-primary link-hover text-semibold"
             >
               Sign in
             </Link>
