@@ -82,21 +82,21 @@ src
 └── main.tsx
 
 ## Pages
-/ — Home
-/login — Login
-/register — Register
-/account — User account
-/products — Product catalog
-/products/:id — Product details
-/cart — Shopping cart
-/checkout — Checkout
-/order-success — Order success
-/contact — Contact page
-/help — Help center
-/shipping — Shipping information
-/returns — Returns information
-/about — About page
-/careers — Careers page
+- / — Home
+- /login — Login
+- /register — Register
+- /account — User account
+- /products — Product catalog
+- /products/:id — Product details
+- /cart — Shopping cart
+- /checkout — Checkout
+- /order-success — Order success
+- /contact — Contact page
+- /help — Help center
+- /shipping — Shipping information
+- /returns — Returns information
+- /about — About page
+- /careers — Careers page
 
 ## Authentication
 This project uses **Firebase Authentication**.
@@ -105,8 +105,8 @@ Supported auth methods:
 - Email and password login
 - Email and password registration
 - **Google sign-in**
-- Cart System
 
+## Cart System
 The cart is managed through a custom context and includes:
 - add to cart
 - remove from cart
@@ -126,8 +126,9 @@ Example validations include:
 - password minimum length
 - password confirmation match
 - terms acceptance
-- Environment Variables
 
+
+## Environment Variables
 Create a .env file in the project root and add your Firebase credentials:
 - VITE_FIREBASE_API_KEY=
 - VITE_FIREBASE_AUTH_DOMAIN=
@@ -151,7 +152,7 @@ Create a .env file based on .env.example and fill in your Firebase values.
 4. Start the development server
 npm run dev
 
-Available Scripts
+## Available Scripts
 - npm run dev      # Start development server
 - npm run build    # Build for production
 - npm run lint     # Run ESLint
@@ -167,7 +168,9 @@ The deployment pipeline:
 - injects Firebase environment variables from GitHub Secrets
 - uploads the dist folder
 - deploys to GitHub Pages
-- Reusable Components
+
+
+## Reusable Components
 
 The project includes reusable UI pieces such as:
 - Button
@@ -180,7 +183,9 @@ The project includes reusable UI pieces such as:
 - PrivacyModal
 - TermsModal
 - ScrollToTop
-- Sample Product Categories
+
+
+## Sample Product Categories
 
 The store data currently includes categories such as:
 - Computers
@@ -189,9 +194,9 @@ The store data currently includes categories such as:
 
 
 ## Notes
-- - This project is primarily a frontend e-commerce application.
-- - Product data is currently provided from local project data.
-- - Checkout currently simulates payment processing on the frontend.
+- This project is primarily a frontend e-commerce application.
+- Product data is currently provided from local project data.
+- Checkout currently simulates payment processing on the frontend.
 
 ## Future Improvements
 - Backend integration for real orders
@@ -206,5 +211,5 @@ The store data currently includes categories such as:
 ## Author
 Vahid Aliyev
 
-*License*
+## License
 This project is for educational and portfolio purposes.
