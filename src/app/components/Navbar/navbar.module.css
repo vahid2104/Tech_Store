@@ -52,6 +52,10 @@
 .input:focus {
   outline-color: #3b3dda;
 }
+.buttonHover {
+  width: 100%;
+  text-align: center;
+}
 .buttonHover:hover {
   background-color: #3e61d4;
   transition: 0.5s all;

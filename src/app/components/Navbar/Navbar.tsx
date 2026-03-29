@@ -60,25 +60,24 @@ export function Navbar() {
             </Link>
             {/* User Menu */}
             {isAuthenticated ? (
-              <Link
-                to="/account"
-                className={`flex items-center margin-x ${styles.userMenuLink}`}
-              >
-                <div
-                  className={`flex items-center justify-center bg-color-blue text-bold color-white ${styles.userMenu}`}
-                >
-                  {user?.name?.charAt(0).toUpperCase()}
-                </div>
-                <span className="margin-x flex items-center text-sm text-bold color-black">
-                  {user?.name}
-                </span>
+              <div className={`flex ${styles.userMenuLink}`}>
+                <Link to="/account" className={`flex items-center margin-x`}>
+                  <div
+                    className={`flex items-center justify-center bg-color-blue text-bold color-white ${styles.userMenu}`}
+                  >
+                    {user?.name?.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="margin-x flex items-center text-sm text-bold color-black">
+                    {user?.name}
+                  </span>
+                </Link>
                 <Button onClick={logout}>Logout</Button>
-              </Link>
+              </div>
             ) : (
               <Link
                 onClick={() => setMobileMenuOpen(false)}
                 to="/login"
-                className={`link border-radius bg-color-blue padding-md ${styles.buttonHover}`}
+                className={`link border-radius bg-color-blue padding-md ${styles.buttonHover} ${styles.userMenuLink}`}
               >
                 Sign In
               </Link>
@@ -134,13 +133,19 @@ export function Navbar() {
               </Link>
             </div>
             <div className="w-full flex">
-              <Link
-                onClick={() => setMobileMenuOpen(false)}
-                to="/login"
-                className={`link w-full text-center border-radius bg-color-blue padding-md ${styles.buttonHover}`}
-              >
-                Sign In
-              </Link>
+              {isAuthenticated ? (
+                <Button className="w-full" onClick={logout}>
+                  Logout
+                </Button>
+              ) : (
+                <Link
+                  onClick={() => setMobileMenuOpen(false)}
+                  to="/login"
+                  className={`link border-radius bg-color-blue padding-md ${styles.buttonHover}`}
+                >
+                  Sign In
+                </Link>
+              )}
             </div>
           </div>
         )}
