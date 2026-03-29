@@ -1,0 +1,92 @@
+.containerBox {
+  padding: 1rem 1rem 3rem 1rem;
+}
+
+.formsSection {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.formsBox {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2rem;
+  border: 1px solid rgb(221, 220, 220);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.paymentLabel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+.paymentLabel:hover {
+  background-color: rgb(238, 237, 237);
+}
+.sumSection {
+  width: 35%;
+}
+.sumBox {
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  border: 1px solid rgb(221, 220, 220);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.sumProductImg {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.sumContent {
+  width: 60%;
+}
+.hr {
+  height: 1.5px;
+  background-color: rgb(221, 220, 220);
+}
+.shippingDiv {
+  width: 100%;
+  padding: 0 1rem;
+  border: 1px solid rgb(121, 151, 190);
+  background-color: rgb(193, 208, 231);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+  .formsSection {
+    width: 50%;
+  }
+  .sumSection {
+    width: 47%;
+  }
+  .sumContent {
+    width: 80%;
+  }
+  .responsiveInputs {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 765px) {
+  .formsSection {
+    width: 100%;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .sumSection {
+    width: 100%;
+  }
+}

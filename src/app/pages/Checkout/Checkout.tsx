@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useCart } from "../../hooks/useCart";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
-import "./checkout.css";
+import styles from "./checkout.module.css";
 import { Check, CreditCard } from "lucide-react";
 import { Button } from "../../components/Button/Button";
 
@@ -49,15 +49,15 @@ export default function Checkout() {
   };
   return (
     <div className="min-h-screen">
-      <div className="container" style={{ padding: "1rem 1rem 3rem 1rem" }}>
+      <div className={`container ${styles.containerBox}`}>
         <h1>Checkout</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="flex flex-wrap justify-between gap-md">
             {/* Checkout Form */}
-            <div className="forms-section">
+            <div className={`${styles.formsSection}`}>
               {/* Shipping Information */}
-              <div className="forms-box">
+              <div className={`${styles.formsBox}`}>
                 <h2>Shipping Information</h2>
                 <div className="flex flex-col gap-lg">
                   <Input
@@ -68,7 +68,7 @@ export default function Checkout() {
                     required
                     placeholder="John Maximoff"
                   />
-                  <div className="flex gap-md responsive-inputs">
+                  <div className={`flex gap-md ${styles.responsiveInputs}`}>
                     <Input
                       label="Email"
                       name="email"
@@ -94,7 +94,7 @@ export default function Checkout() {
                     required
                     placeholder="123 Main Street"
                   />
-                  <div className="flex gap-md responsive-inputs">
+                  <div className={`flex gap-md ${styles.responsiveInputs}`}>
                     <Input
                       label="City"
                       name="city"
@@ -115,11 +115,11 @@ export default function Checkout() {
                 </div>
               </div>
               {/* Payment Method */}
-              <div className="forms-box">
+              <div className={`${styles.formsBox}`}>
                 <h2>Payment Method</h2>
 
                 <div className="w-full flex margin-b">
-                  <label className="payment-label">
+                  <label className={`${styles.paymentLabel}`}>
                     <input
                       type="radio"
                       name="payment"
@@ -165,11 +165,8 @@ export default function Checkout() {
             </div>
 
             {/* Order Summary */}
-            <div className="sum-section">
-              <div
-                className="sum-box border-radius"
-                style={{ border: "1px solid rgb(221, 220, 220)" }}
-              >
+            <div className={`${styles.sumSection}`}>
+              <div className={`${styles.sumBox} border-radius`}>
                 <h2>Order Summary</h2>
 
                 {/* Products */}
@@ -182,32 +179,23 @@ export default function Checkout() {
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="sum-product-img"
+                        className={`${styles.sumProductImg}`}
                       />
-                      <div className="sum-content">
-                        <p className="text-bold" style={{ marginBlock: "0" }}>
+                      <div className={`${styles.sumContent}`}>
+                        <p className="text-bold margin-block-none">
                           {item.name}
                         </p>
-                        <p
-                          className="color-foreground"
-                          style={{ marginBlock: "0" }}
-                        >
+                        <p className="color-foreground margin-block-none">
                           Qty: {item.quantity}
                         </p>
                       </div>
-                      <p className="text-bold" style={{ marginBlock: "0" }}>
+                      <p className="text-bold margin-block-none">
                         ${(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
                   ))}
                 </div>
-                <hr
-                  className="w-full border-none"
-                  style={{
-                    height: "1.5px",
-                    backgroundColor: "rgb(221, 220, 220)",
-                  }}
-                />
+                <hr className={`w-full border-none ${styles.hr}`} />
                 <div className="flex flex-col gap-sm padding-t-b">
                   <div className="w-full flex items-center justify-between">
                     <span className="color-foreground">Subtotal</span>
@@ -225,13 +213,7 @@ export default function Checkout() {
                     <span className="color-foreground">Tax (10%)</span>
                     <span className="text-sm text-bold">${tax.toFixed(2)}</span>
                   </div>
-                  <hr
-                    className="w-full border-none"
-                    style={{
-                      height: "1.5px",
-                      backgroundColor: "rgb(221, 220, 220)",
-                    }}
-                  />
+                  <hr className={`w-full border-none ${styles.hr}`} />
                   <div className="w-full flex justify-between">
                     <span className="text-bold">Total</span>
                     <span className="text-2xl text-bold">
@@ -241,16 +223,7 @@ export default function Checkout() {
                 </div>
 
                 {subTotal < 100 && (
-                  <div
-                    style={{
-                      width: "100%",
-                      padding: "0 1rem",
-                      border: "1px solid rgb(121, 151, 190)",
-                      backgroundColor: "rgb(193, 208, 231)",
-                      boxSizing: "border-box",
-                      borderRadius: "10px",
-                    }}
-                  >
+                  <div className={`${styles.shippingDiv}`}>
                     <p className="color-primary">
                       Add ${(100 - subTotal).toFixed(2)} more to get FREE
                       shipping!
