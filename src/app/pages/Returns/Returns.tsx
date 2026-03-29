@@ -1,6 +1,7 @@
 import { CheckCircle, Clock, Package, RotateCcw, XCircle } from "lucide-react";
-import "./returns.css";
+import styles from "./returns.module.css";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 
 export default function Returns() {
   const returnSteps = [
@@ -53,17 +54,13 @@ export default function Returns() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="w-full gradient-header" style={{ padding: "3rem 0" }}>
+      <div className={`w-full gradient-header ${styles.heroSection}`}>
         <div className="container flex justify-center">
           <div
-            className="text-center flex flex-col items-center"
-            style={{ maxWidth: "850px" }}
+            className={`text-center flex flex-col items-center ${styles.heroTextBox}`}
           >
-            <div
-              className="shipping-icons-div"
-              style={{ width: "70px", height: "70px", marginBottom: "2rem" }}
-            >
-              <RotateCcw style={{ width: "40px", height: "40px" }} />
+            <div className={`${styles.heroIconDiv}`}>
+              <RotateCcw className={`${styles.heroIcon}`} />
             </div>
             <h1 className="text-4xl margin-block-none">Returns & Refunds</h1>
             <p className="text-lg color-foreground">
@@ -74,14 +71,10 @@ export default function Returns() {
         </div>
       </div>
 
-      <div
-        className="container flex flex-col"
-        style={{ padding: "3rem 20px", gap: "3rem" }}
-      >
+      <div className={`container flex flex-col ${styles.containerBox}`}>
         {/* Return Policy Overview */}
         <div
-          className="box-border border-radius border-box flex flex-col"
-          style={{ padding: "2rem", gap: "0.2rem" }}
+          className={`box-border border-radius border-box flex flex-col ${styles.rpoDiv}`}
         >
           <h2 className="margin-block-none">30-Day Return Policy</h2>
           <p>
@@ -90,15 +83,9 @@ export default function Returns() {
             accessories, and documentation. Return shipping is free for
             defective items, otherwise a small fee may apply.
           </p>
-          <div className="flex justify-between return-policy-box">
+          <div className={`flex justify-between ${styles.rpoBox}`}>
             <div className="flex items-center gap-md">
-              <div
-                className="return-policy-icons"
-                style={{
-                  backgroundColor: "rgba(92, 206, 92, 0.185)",
-                  color: "rgb(99, 226, 14)",
-                }}
-              >
+              <div className={`${styles.rpoIcons} ${styles.rpoIconsGreen}`}>
                 <Clock />
               </div>
               <div>
@@ -109,13 +96,7 @@ export default function Returns() {
               </div>
             </div>
             <div className="flex items-center gap-md">
-              <div
-                className="return-policy-icons"
-                style={{
-                  backgroundColor: "rgba(14, 124, 226, 0.2)",
-                  color: "rgb(14, 124, 226)",
-                }}
-              >
+              <div className={`${styles.rpoIcons} ${styles.rpoIconsBlue}`}>
                 <Package />
               </div>
               <div>
@@ -126,13 +107,7 @@ export default function Returns() {
               </div>
             </div>
             <div className="flex items-center gap-md">
-              <div
-                className="return-policy-icons"
-                style={{
-                  backgroundColor: "rgba(191, 14, 226, 0.22)",
-                  color: "rgb(191, 14, 226)",
-                }}
-              >
+              <div className={`${styles.rpoIcons} ${styles.rpoIconsPurple}`}>
                 <RotateCcw />
               </div>
               <div>
@@ -147,33 +122,18 @@ export default function Returns() {
 
         {/* How to Return */}
         <div>
-          <h2
-            className="margin-block-none"
-            style={{ marginBottom: "2rem", fontSize: "2rem" }}
-          >
+          <h2 className={`margin-block-none ${styles.howReturnTitle}`}>
             How to Return an Item
           </h2>
-          <div
-            className="flex how-return-div"
-            style={{ height: "fit-content" }}
-          >
+          <div className={`flex ${styles.howReturnDiv}`}>
             {returnSteps.map((item, index) => (
-              <div
-                key={index}
-                className={`how-return-box how-return-box-${index}`}
-              >
+              <div key={index} className={`${styles.howReturnBox}`}>
                 <div
                   key={index}
-                  className="how-return-item box-border border-radius"
+                  className={`${styles.howReturnItem} box-border border-radius`}
                 >
                   <div
-                    className="flex items-center justify-center rounded-full"
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      backgroundColor: "rgba(10, 116, 216, 0.23)",
-                      color: "rgb(10, 116, 216)",
-                    }}
+                    className={`flex items-center justify-center rounded-full ${styles.howReturnItemStep}`}
                   >
                     <span className="text-xl text-semibold">{item.step}</span>
                   </div>
@@ -182,7 +142,12 @@ export default function Returns() {
                     {item.description}
                   </p>
                 </div>
-                <hr className={`how-return-hr how-return-hr-${index}`} />
+                <hr
+                  className={clsx(
+                    styles.howReturnHr,
+                    styles[`howReturnHr${index}`],
+                  )}
+                />
               </div>
             ))}
           </div>
@@ -190,40 +155,33 @@ export default function Returns() {
 
         {/* Eligible Items */}
         <div className="flex flex-wrap justify-between">
-          <div
-            className="eligible-items-box"
-            style={{ border: "1px solid rgb(72, 218, 72)" }}
-          >
+          <div className={`${styles.eligibleItemsBox} ${styles.borderGreen}`}>
             <div className="flex items-center gap-md">
               <CheckCircle
-                style={{
-                  width: "35px",
-                  height: "35px",
-                  color: "rgb(72, 218, 72)",
-                }}
+                className={`${styles.eligibleHeadIcons} ${styles.greenIcons}`}
               />
               <h3>Eligible for Return</h3>
             </div>
-            <ul>
+            <ul className={`${styles.ul}`}>
               {eligibleItems.map((item, index) => (
                 <li key={index} className="flex gap-sm">
-                  <CheckCircle style={{ color: "rgb(72, 218, 72)" }} />
+                  <CheckCircle className={`${styles.greenIcons}`} />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="eligible-items-box border">
+          <div className={`${styles.eligibleItemsBox} ${styles.borderRed}`}>
             <div className="flex items-center gap-md">
               <XCircle
-                style={{ width: "35px", height: "35px", color: "red" }}
+                className={`${styles.eligibleHeadIcons} ${styles.redIcons}`}
               />
               <h3>Not Eligible for Return</h3>
             </div>
-            <ul>
+            <ul className={`${styles.ul}`}>
               {nonEligibleItems.map((item, index) => (
                 <li key={index} className="flex gap-sm">
-                  <XCircle style={{ color: "red" }} />
+                  <XCircle className={`${styles.redIcons}`} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -232,12 +190,10 @@ export default function Returns() {
         </div>
 
         {/* Refund Information */}
-        <div className="box-border border-radius" style={{ padding: "2rem" }}>
-          <h2 className="margin-block-none" style={{ marginBottom: "1.5rem" }}>
-            Refund Information
-          </h2>
+        <div className={`box-border border-radius ${styles.refundDiv}`}>
+          <h2 className="margin-block-none">Refund Information</h2>
           <div className="flex flex-wrap justify-between">
-            <div className="flex flex-col gap-md ref-info">
+            <div className={`flex flex-col gap-md ${styles.refundBox}`}>
               <h3 className="margin-block-none">Processing Time</h3>
               <p className="color-foreground margin-block-none">
                 Once we receive your returned item, we'll inspect it and process
@@ -245,7 +201,7 @@ export default function Returns() {
                 confirmation when the refund is issued.
               </p>
             </div>
-            <div className="flex flex-col gap-md ref-info">
+            <div className={`flex flex-col gap-md ${styles.refundBox}`}>
               <h3 className="margin-block-none">Refund Method</h3>
               <p className="color-foreground margin-block-none">
                 Refunds are issued to the original payment method. Credit card
@@ -253,7 +209,7 @@ export default function Returns() {
                 depending on your bank.
               </p>
             </div>
-            <div className="flex flex-col gap-md ref-info">
+            <div className={`flex flex-col gap-md ${styles.refundBox}`}>
               <h3 className="margin-block-none">Partial Refunds</h3>
               <p className="color-foreground margin-block-none">
                 Partial refunds may be issued for items returned without
@@ -261,7 +217,7 @@ export default function Returns() {
                 before processing a partial refund.
               </p>
             </div>
-            <div className="flex flex-col gap-md ref-info">
+            <div className={`flex flex-col gap-md ${styles.refundBox}`}>
               <h3 className="margin-block-none">Return Shipping Costs</h3>
               <p className="color-foreground margin-block-none">
                 Return shipping is free for defective or damaged items. For
@@ -273,8 +229,8 @@ export default function Returns() {
         </div>
 
         {/* Exchange Information */}
-        <div className="box-border border-radius" style={{ padding: "2rem" }}>
-          <h2 style={{ marginBlockStart: "0" }}>Exchanges</h2>
+        <div className={`box-border border-radius ${styles.exchangeDiv}`}>
+          <h2 className="margin-block-none">Exchanges</h2>
           <p className="color-foreground">
             If you'd like to exchange an item for a different size, color, or
             model, please follow these steps:
@@ -296,34 +252,31 @@ export default function Returns() {
         </div>
 
         {/* Defective Items */}
-        <div className="defective-items-box">
-          <h2 style={{ marginBlockStart: "0" }}>Defective or Damaged Items</h2>
+        <div className={`${styles.defectiveItemsBox}`}>
+          <h2 className="margin-block-none">Defective or Damaged Items</h2>
           <p className="color-foreground">
             If you receive a defective or damaged item, we sincerely apologize.
             We'll make it right immediately.
           </p>
-          <ul
-            className="color-foreground flex flex-col gap-md"
-            style={{ listStyle: "none", padding: "0" }}
-          >
+          <ul className={`color-foreground flex flex-col gap-md ${styles.ul}`}>
             <li className="flex gap-sm">
-              <CheckCircle style={{ color: "rgb(72, 218, 72)" }} />
+              <CheckCircle className={`${styles.greenIcons}`} />
               <span>Free return shipping with prepaid label</span>
             </li>
             <li className="flex gap-sm">
-              <CheckCircle style={{ color: "rgb(72, 218, 72)" }} />
+              <CheckCircle className={`${styles.greenIcons}`} />
               <span>Full refund or replacement at no cost</span>
             </li>
             <li className="flex gap-sm">
-              <CheckCircle style={{ color: "rgb(72, 218, 72)" }} />
+              <CheckCircle className={`${styles.greenIcons}`} />
               <span>Priority processing for defective items</span>
             </li>
             <li className="flex gap-sm">
-              <CheckCircle style={{ color: "rgb(72, 218, 72)" }} />
+              <CheckCircle className={`${styles.greenIcons}`} />
               <span>Contact us within 7 days of receiving the item</span>
             </li>
           </ul>
-          <Link to="/contact" className="report-link">
+          <Link to="/contact" className={`${styles.reportLink}`}>
             Report a Problem
           </Link>
         </div>
@@ -333,12 +286,9 @@ export default function Returns() {
           <h2>Frequently Asked Questions</h2>
           <div className="flex flex-wrap justify-between">
             <div
-              className="box-border border-radius padding faq-boxes"
-              style={{ marginBottom: "1rem" }}
+              className={`box-border border-radius padding ${styles.faqBoxes}`}
             >
-              <h3 style={{ marginBlockStart: "0" }}>
-                Can I return sale items?
-              </h3>
+              <h3 className="margin-block-none">Can I return sale items?</h3>
               <p className="color-foreground">
                 Yes, most sale items can be returned within 30 days. However,
                 items marked as "Final Sale" or "Clearance" cannot be returned
@@ -346,12 +296,9 @@ export default function Returns() {
               </p>
             </div>
             <div
-              className="box-border border-radius padding faq-boxes"
-              style={{ marginBottom: "1rem" }}
+              className={`box-border border-radius padding ${styles.faqBoxes}`}
             >
-              <h3 style={{ marginBlockStart: "0" }}>
-                What if I lost my receipt?
-              </h3>
+              <h3 className="margin-block-none">What if I lost my receipt?</h3>
               <p className="color-foreground">
                 If you have an account with us, we can look up your order
                 history. For guest orders, please contact customer service with
@@ -359,12 +306,9 @@ export default function Returns() {
               </p>
             </div>
             <div
-              className="box-border border-radius padding faq-boxes"
-              style={{ marginBottom: "1rem" }}
+              className={`box-border border-radius padding ${styles.faqBoxes}`}
             >
-              <h3 style={{ marginBlockStart: "0" }}>
-                How do I track my return?
-              </h3>
+              <h3 className="margin-block-none">How do I track my return?</h3>
               <p className="color-foreground">
                 Use the tracking number from your return shipping label to track
                 your package. We'll also send you an email when we receive your
@@ -372,10 +316,9 @@ export default function Returns() {
               </p>
             </div>
             <div
-              className="box-border border-radius padding faq-boxes"
-              style={{ marginBottom: "1rem" }}
+              className={`box-border border-radius padding ${styles.faqBoxes}`}
             >
-              <h3 style={{ marginBlockStart: "0" }}>
+              <h3 className="margin-block-none">
                 Can I return opened electronics?
               </h3>
               <p className="color-foreground">
@@ -388,7 +331,7 @@ export default function Returns() {
         </div>
 
         {/* Contact CTA */}
-        <div className="box-border contact-div">
+        <div className={`box-border ${styles.contactDiv}`}>
           <h2 className="text-2xl margin-block-none">
             Need Help with a Return?
           </h2>
@@ -396,7 +339,7 @@ export default function Returns() {
             Our customer service team is here to assist you with the return
             process.
           </p>
-          <Link to="/contact" className="contact-support-link">
+          <Link to="/contact" className={`${styles.contactSupportLink}`}>
             Contact Support
           </Link>
         </div>
