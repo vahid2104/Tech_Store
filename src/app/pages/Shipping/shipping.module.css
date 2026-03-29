@@ -1,0 +1,146 @@
+.heroSection {
+  padding: 2rem 0;
+}
+.heroCenterDiv {
+  max-width: 850px;
+}
+.shippingIconsDiv {
+  background-color: rgba(142, 166, 212, 0.288);
+  color: #2e57dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+}
+.heroIconDiv {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 2rem;
+}
+.heroIcon {
+  width: 40px;
+  height: 40px;
+}
+.containerBox {
+  gap: 3rem;
+  padding: 4rem 20px;
+}
+.dsoBox {
+  width: 32%;
+  padding: 1.5rem;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border-radius: 1rem;
+}
+.dsoIcon {
+  width: 50px;
+  height: 50px;
+}
+.timeIcon {
+  width: 18px;
+  height: 18px;
+}
+.circleIcon {
+  width: 20px;
+  height: 20px;
+  color: green;
+}
+.dsoUl {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.globeIcon {
+  width: 40px;
+  height: 40px;
+}
+.tableDiv {
+  overflow: hidden;
+}
+.tableMainDiv {
+  overflow-x: auto;
+}
+.shippingTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.tHead {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.479);
+}
+.shippingTableTh {
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  text-align: left;
+}
+.shippingTableTr {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.479);
+  transition: 0.5s all;
+}
+.shippingTableTr:hover {
+  background-color: #f5f5f5;
+}
+.shippingTableTd {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border: none;
+}
+.tBodyTr:last-child {
+  border-bottom: none;
+}
+
+.addInfoBox {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.contactDiv {
+  box-sizing: border-box;
+  padding: 2rem;
+  margin-top: 3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 64, 175, 0.1),
+    #f8f8f8,
+    #eeeeee5e
+  );
+}
+.contactSupportLink {
+  background-color: #4f72e4;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  transition: 0.5s all;
+}
+.contactSupportLink:hover {
+  background-color: #4f72e4e1;
+}
+
+/* Responsive Design */
+@media (max-width: 765px) {
+  .dsoBox {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .addInfoBox {
+    width: 100%;
+  }
+}

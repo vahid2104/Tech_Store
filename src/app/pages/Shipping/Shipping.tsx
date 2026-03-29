@@ -1,5 +1,5 @@
 import { CheckCircle, Clock, Globe, Package, Truck } from "lucide-react";
-import "./shipping.css";
+import styles from "./shipping.module.css";
 import { Link } from "react-router-dom";
 
 export default function Shipping() {
@@ -53,17 +53,13 @@ export default function Shipping() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="w-full gradient-header" style={{ padding: "2rem 0" }}>
+      <div className={`w-full gradient-header ${styles.heroSection}`}>
         <div className="container flex justify-center">
           <div
-            className="text-center flex flex-col items-center"
-            style={{ maxWidth: "850px" }}
+            className={`text-center flex flex-col items-center ${styles.heroCenterDiv}`}
           >
-            <div
-              className="shipping-icons-div"
-              style={{ width: "70px", height: "70px", marginBottom: "2rem" }}
-            >
-              <Truck style={{ width: "40px", height: "40px" }} />
+            <div className={`${styles.shippingIconsDiv} ${styles.heroIconDiv}`}>
+              <Truck className={`${styles.heroIcon}`} />
             </div>
             <h1 className="text-4xl margin-block-none">Shipping Information</h1>
             <p className="text-lg color-foreground">
@@ -74,26 +70,22 @@ export default function Shipping() {
         </div>
       </div>
 
-      <div
-        className="container flex flex-col"
-        style={{ gap: "3rem", padding: "4rem 20px" }}
-      >
+      <div className={`container flex flex-col ${styles.containerBox}`}>
         {/* Domestic Shipping Options */}
         <div className="flex flex-col gap-lg">
-          <h2 className="margin-block-none" style={{ fontSize: "2rem" }}>
+          <h2 className="margin-block-none text-3xl">
             Domestic Shipping Options
           </h2>
-          <div
-            className="flex flex-wrap justify-between"
-            style={{ alignItems: "stretch" }}
-          >
+          <div className="flex flex-wrap justify-between">
             {shippingOptions.map((option, index) => {
               const Icon = option.icon;
               return (
-                <div key={index} className="box-shadow box-border dso-box">
+                <div
+                  key={index}
+                  className={`box-shadow box-border ${styles.dsoBox}`}
+                >
                   <div
-                    className="shipping-icons-div"
-                    style={{ width: "50px", height: "50px" }}
+                    className={`${styles.shippingIconsDiv} ${styles.dsoIcon}`}
                   >
                     <Icon />
                   </div>
@@ -108,23 +100,17 @@ export default function Shipping() {
                       </p>
                     )}
                   </div>
-                  <p
-                    className="flex items-center gap-sm text-semibold"
-                    style={{ margin: "0" }}
-                  >
-                    <Clock style={{ width: "18px", height: "18px" }} />
+                  <p className="flex items-center gap-sm text-semibold margin-block-none">
+                    <Clock
+                      className={`${styles.timeIcon}`}
+                      style={{ width: "18px", height: "18px" }}
+                    />
                     {option.time}
                   </p>
-                  <ul className="dso-ul">
+                  <ul className={`${styles.dsoUl}`}>
                     {option.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center gap-sm">
-                        <CheckCircle
-                          style={{
-                            width: "20px",
-                            height: "20px",
-                            color: "green",
-                          }}
-                        />
+                        <CheckCircle className={`${styles.circleIcon}`} />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -138,40 +124,39 @@ export default function Shipping() {
         {/* International Shipping */}
         <div className="flex flex-col gap-lg">
           <div className="flex items-center gap-md">
-            <Globe
-              className="color-primary"
-              style={{ width: "40px", height: "40px" }}
-            />
-            <h2 className="margin-block-none" style={{ fontSize: "2rem" }}>
+            <Globe className={`color-primary ${styles.globeIcon}`} />
+            <h2 className="margin-block-none text-3xl">
               International Shipping
             </h2>
           </div>
-          <div
-            className="border-radius box-border"
-            style={{ overflow: "hidden" }}
-          >
-            <div style={{ overflowX: "auto" }}>
-              <table className="shipping-table">
-                <thead
-                  className="bg-color-gray"
-                  style={{
-                    borderBottom: "1px solid rgba(128, 128, 128, 0.479)",
-                  }}
-                >
+          <div className={`border-radius box-border ${styles.tableDiv}`}>
+            <div className={`${styles.tableMainDiv}`}>
+              <table className={`${styles.shippingTable}`}>
+                <thead className={`bg-color-gray ${styles.tHead}`}>
                   <tr>
-                    <th className="shipping-table-th">Destination</th>
-                    <th className="shipping-table-th">Delivery Time</th>
-                    <th className="shipping-table-th">Shipping Cost</th>
+                    <th className={`${styles.shippingTableTh}`}>Destination</th>
+                    <th className={`${styles.shippingTableTh}`}>
+                      Delivery Time
+                    </th>
+                    <th className={`${styles.shippingTableTh}`}>
+                      Shipping Cost
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {internationalShipping.map((item, index) => (
-                    <tr key={index} className="shipping-table-tr">
-                      <td className="shipping-table-td">{item.country}</td>
-                      <td className="color-foreground shipping-table-td">
+                    <tr key={index} className={`${styles.shippingTableTr}`}>
+                      <td className={`${styles.shippingTableTd}`}>
+                        {item.country}
+                      </td>
+                      <td
+                        className={`color-foreground ${styles.shippingTableTd}`}
+                      >
                         {item.time}
                       </td>
-                      <td className="shipping-table-td color-primary text-semibold">
+                      <td
+                        className={`text-semibold color-primary ${styles.shippingTableTd}`}
+                      >
                         {item.cost}
                       </td>
                     </tr>
@@ -187,11 +172,8 @@ export default function Shipping() {
         </div>
 
         {/* Additional Information */}
-        <div
-          className="flex flex-wrap justify-between"
-          style={{ gap: "2.5rem" }}
-        >
-          <div className="box-border add-info-box">
+        <div className="flex flex-wrap justify-between">
+          <div className={`box-border ${styles.addInfoBox}`}>
             <h3 className="margin-block-none">Package Tracking</h3>
             <div className="color-foreground flex flex-col gap-md">
               <p className="margin-block-none">
@@ -212,7 +194,7 @@ export default function Shipping() {
               </p>
             </div>
           </div>
-          <div className="box-border add-info-box">
+          <div className={`box-border ${styles.addInfoBox}`}>
             <h3 className="margin-block-none">Package Tracking</h3>
             <div className="color-foreground flex flex-col gap-md">
               <p className="margin-block-none">
@@ -235,7 +217,7 @@ export default function Shipping() {
               </p>
             </div>
           </div>
-          <div className="box-border add-info-box">
+          <div className={`box-border ${styles.addInfoBox}`}>
             <h3 className="margin-block-none">Package Tracking</h3>
             <div className="color-foreground flex flex-col gap-md">
               <p className="margin-block-none">
@@ -258,7 +240,7 @@ export default function Shipping() {
               </p>
             </div>
           </div>
-          <div className="box-border add-info-box">
+          <div className={`box-border ${styles.addInfoBox}`}>
             <h3 className="margin-block-none">Package Tracking</h3>
             <div className="color-foreground flex flex-col gap-md">
               <p className="margin-block-none">
@@ -283,7 +265,7 @@ export default function Shipping() {
         </div>
 
         {/* Contact CTA */}
-        <div className="box-border contact-div">
+        <div className={`box-border ${styles.contactDiv}`}>
           <h2 className="text-2xl margin-block-none">
             Questions About Shipping?
           </h2>
@@ -291,7 +273,7 @@ export default function Shipping() {
             Our customer service team is here to help with any shipping
             questions or concerns.
           </p>
-          <Link to="/contact" className="contact-support-link">
+          <Link to="/contact" className={`${styles.contactSupportLink}`}>
             Contact Us
           </Link>
         </div>
