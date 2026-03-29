@@ -201,8 +201,7 @@ function Login() {
             Don't have an account?{" "}
             <Link
               to="/register"
-              className="color-primary link-hover"
-              style={{ fontWeight: "600" }}
+              className="color-primary link-hover text-semibold"
             >
               Sign up
             </Link>
