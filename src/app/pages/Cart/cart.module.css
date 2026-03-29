@@ -1,0 +1,116 @@
+.containerBox {
+  padding: 2rem 20px;
+}
+.mainTitle {
+  margin-bottom: 2rem;
+}
+.itemsSection {
+  width: 60%;
+}
+.cartItemBox {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+
+.cartItemImgDiv {
+  width: 7.5rem;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.cartImg {
+  object-fit: cover;
+}
+.cartItemTitle {
+  font-size: 600;
+  margin-block: 0;
+  color: black;
+  transition: 0.5s all;
+}
+.cartItemTitle:hover {
+  color: #2e57dd;
+}
+.cartItemDetail {
+  width: 80%;
+  display: flex;
+}
+.cartItemBtn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 0.5rem;
+  transition: 0.5s all;
+}
+.cartItemBtn:hover {
+  background-color: rgb(226, 225, 225);
+}
+.priceDiv {
+  align-items: flex-end;
+}
+.cartRemoveBtn {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: none;
+  transition: 0.5s all;
+  color: rgb(209, 49, 49);
+}
+.cartRemoveBtn:hover {
+  border-radius: 0.5rem;
+  background-color: rgb(226, 225, 225);
+}
+.sumSection {
+  width: 35%;
+}
+.sumBox {
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.hr {
+  height: 1.5px;
+  background-color: rgb(221, 220, 220);
+}
+.shippingDiv {
+  width: 100%;
+  padding: 0 1rem;
+  border: 1px solid rgb(121, 151, 190);
+  background-color: rgb(193, 208, 231);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.continueBtn {
+  background-color: rgb(224, 224, 224);
+}
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+  .mContentBox {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .itemsSection {
+    width: 100%;
+  }
+  .sumSection {
+    width: 100%;
+  }
+}
+@media (max-width: 450px) {
+  .cartItemImgDiv {
+    width: 150px;
+    height: fit-content;
+  }
+}

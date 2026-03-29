@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 import EmptyState from "../../components/EmptyState";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import "./cart.css";
+import styles from "./cart.module.css";
 import { Button } from "../../components/Button/Button";
 
 export default function Cart() {
@@ -29,39 +29,40 @@ export default function Cart() {
   }
   return (
     <div className="min-h-screen bg-color-white">
-      <div className="container" style={{ padding: "2rem 20px" }}>
-        <h1 className="text-3xl font-bold" style={{ marginBottom: "2rem" }}>
+      <div className={`${styles.containerBox}`}>
+        <h1 className={`text-3xl font-bold ${styles.mainTitle}`}>
           Shopping Cart
         </h1>
 
-        <div className="w-full flex justify-between gap-md m-content-box">
+        <div
+          className={`w-full flex justify-between gap-md ${styles.mContentBox}`}
+        >
           {/* Cart  Items */}
-          <div className="w-full flex flex-col gap-md items-section">
+          <div className={`w-full flex flex-col gap-md ${styles.itemsSection}`}>
             {cart.map((item) => (
-              <div key={item.id} className="cart-item-box gap-md">
+              <div key={item.id} className={`${styles.cartItemBox} gap-md`}>
                 {/* Image */}
-                <Link to={`/product/${item.id}`} className="cart-item-img">
+                <Link
+                  to={`/product/${item.id}`}
+                  className={`${styles.cartItemImgDiv}`}
+                >
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full"
-                    style={{ objectFit: "cover" }}
+                    className={`w-full h-full ${styles.cartImg}`}
                   />
                 </Link>
 
                 {/* Details */}
-                <div className="cart-item-detail flex flex-col">
+                <div className={`${styles.cartItemDetail} flex flex-col`}>
                   <Link to={`/product/${item.id}`}>
-                    <h3 className="cart-item-title">{item.name}</h3>
+                    <h3 className={`${styles.cartItemTitle}`}>{item.name}</h3>
                   </Link>
                   <p className="color-foreground text-md line-h-none">
                     {item.category}
                   </p>
 
-                  <div
-                    className="flex flex-wrap items-center justify-between"
-                    style={{ minHeight: "50px" }}
-                  >
+                  <div className="flex flex-wrap items-center justify-between gap-md">
                     {/* Quantity Controls */}
                     <div className="flex gap-md items-center">
                       <button
@@ -69,9 +70,9 @@ export default function Cart() {
                           updateQuantity(item.id, item.quantity - 1)
                         }
                         disabled={item.quantity <= 1}
-                        className="cart-item-btn"
+                        className={`${styles.cartItemBtn}`}
                       >
-                        <Minus className="cart-item-icon" />
+                        <Minus className={`${styles.cartItemIcon}`} />
                       </button>
                       <span>{item.quantity}</span>
                       <button
@@ -79,27 +80,18 @@ export default function Cart() {
                           updateQuantity(item.id, item.quantity + 1)
                         }
                         disabled={item.quantity >= item.stock}
-                        className="cart-item-btn"
+                        className={`${styles.cartItemBtn}`}
                       >
-                        <Plus className="cart-item-icon" />
+                        <Plus className={`${styles.cartItemIcon}`} />
                       </button>
                     </div>
 
                     {/* Price */}
-                    <div
-                      className="h-full flex flex-col"
-                      style={{ alignItems: "flex-end" }}
-                    >
-                      <p
-                        className="text-md text-bold"
-                        style={{ marginBlock: "0" }}
-                      >
+                    <div className={`h-full flex flex-col ${styles.priceDiv}`}>
+                      <p className="text-md text-bold margin-block-none">
                         ${item.price * item.quantity}
                       </p>
-                      <p
-                        className="text-md color-foreground"
-                        style={{ marginBlock: "0" }}
-                      >
+                      <p className="text-md color-foreground margin-block-none">
                         ${item.price} each
                       </p>
                     </div>
@@ -109,24 +101,18 @@ export default function Cart() {
                 {/* Remove Button */}
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="cart-item-btn"
-                  style={{
-                    width: "2.5rem",
-                    height: "2.5rem",
-                    border: "none",
-                    color: "rgb(209, 49, 49)",
-                  }}
+                  className={`${styles.cartRemoveBtn}`}
                 >
-                  <Trash2 className="cart-item-icon" />
+                  <Trash2 className={`${styles.cartItemIcon}`} />
                 </button>
               </div>
             ))}
           </div>
 
           {/* Order Summary */}
-          <div className="sum-section">
+          <div className={`${styles.sumSection}`}>
             <div
-              className="sum-box border-radius"
+              className={`${styles.sumBox} border-radius`}
               style={{ border: "1px solid rgb(221, 220, 220)" }}
             >
               <h2>Order Summary</h2>
@@ -147,13 +133,7 @@ export default function Cart() {
                   <span className="color-foreground">Tax (10%)</span>
                   <span className="text-sm text-bold">${tax.toFixed(2)}</span>
                 </div>
-                <hr
-                  className="w-full border-none"
-                  style={{
-                    height: "1.5px",
-                    backgroundColor: "rgb(221, 220, 220)",
-                  }}
-                />
+                <hr className={`w-full border-none ${styles.hr}`} />
                 <div className="w-full flex justify-between">
                   <span className="text-bold">Total</span>
                   <span className="text-2xl text-bold">
@@ -163,16 +143,7 @@ export default function Cart() {
               </div>
 
               {subTotal < 100 && (
-                <div
-                  style={{
-                    width: "100%",
-                    padding: "0 1rem",
-                    border: "1px solid rgb(121, 151, 190)",
-                    backgroundColor: "rgb(193, 208, 231)",
-                    boxSizing: "border-box",
-                    borderRadius: "10px",
-                  }}
-                >
+                <div className={`${styles.shippingDiv}`}>
                   <p className="color-primary">
                     Add ${(100 - subTotal).toFixed(2)} more to get FREE
                     shipping!
@@ -188,10 +159,9 @@ export default function Cart() {
                 Proceed to Checkout
               </Button>
               <Button
-                className="w-full"
+                className={`w-full ${styles.continueBtn}`}
                 size="lg"
                 variant="secondary"
-                style={{ backgroundColor: "rgb(224, 224, 224)" }}
                 onClick={() => navigate("/products")}
               >
                 Continue Shopping
