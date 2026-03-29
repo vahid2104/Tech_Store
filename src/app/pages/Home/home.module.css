@@ -1,18 +1,18 @@
-section {
+.section {
   width: 100%;
   padding: 7vh 0;
 }
 
 /* Hero Section */
 
-.hero-section {
+.heroSection {
   background-color: #f5f8fe;
   padding: 10vh 0;
 }
-.home-hero-left {
+.homeHeroLeft {
   width: 40%;
 }
-.home-hero-right {
+.homeHeroRight {
   width: 650px;
   height: 900px;
   border-radius: 1rem;
@@ -20,7 +20,7 @@ section {
 }
 
 /* Features */
-.feature-box {
+.featureBox {
   width: 30%;
   height: 8vh;
   display: flex;
@@ -28,7 +28,7 @@ section {
   box-sizing: border-box;
   gap: 16px;
 }
-.feature-icon-box {
+.featureIconBox {
   width: 24px;
   height: 24px;
   padding: 12px;
@@ -36,18 +36,18 @@ section {
   border-radius: 0.5rem;
 }
 
-.feature-icon {
+.featureIcon {
   color: #2e57dd;
 }
 
 /* Category Preview */
-.category-section-title {
+.categorySectionTitle {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 32px;
   margin-block-start: 0;
 }
-.category-card {
+.categoryCard {
   width: 32%;
   position: relative;
   overflow: hidden;
@@ -58,19 +58,21 @@ section {
     0 4px 6px -4px rgba(0, 0, 0, 0.1);
   transition: all 200ms ease;
 }
-.category-card:hover {
+.categoryCard:hover {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
-.category-img {
+.categoryImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 300ms ease;
 }
-.category-card:hover .category-img {
-  transform: scale(1.1);
+.categoryCard:hover {
+  .categoryImg {
+    transform: scale(1.1);
+  }
 }
-.category-card-overlay {
+.categoryCardOverlay {
   position: absolute;
   inset: 0;
 
@@ -81,7 +83,7 @@ section {
     rgba(0, 0, 0, 0) 100%
   );
 }
-.category-card-content {
+.categoryCardContent {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -89,7 +91,7 @@ section {
   padding: 24px 0 10px 24px;
   color: white;
 }
-.category-icon-box {
+.categoryIconBox {
   width: 48px;
   height: 48px;
   background: rgba(255, 255, 255, 0.2);
@@ -103,21 +105,21 @@ section {
 
   margin-bottom: 8px; /* mb-4 */
 }
-.category-icon {
+.categoryIcon {
   width: 24px;
   height: 24px;
 }
-.category-card-title {
+.categoryCardTitle {
   font-size: 24px;
   font-weight: 700;
   line-height: 0;
 }
-.category-card-text {
+.categoryCardText {
   color: rgba(255, 255, 255, 0.9);
 }
 
 /* Featured Products */
-.featured-products-section-title {
+.featuredProductsSectionTitle {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 32px;
@@ -125,7 +127,7 @@ section {
 }
 
 /*Promotional Banner*/
-.subscribe-box {
+.subscribeBox {
   width: 600px;
   display: flex;
   flex-direction: column;
@@ -134,7 +136,7 @@ section {
   color: white;
   margin: 0 auto;
 }
-.subscribe-input {
+.subscribeInput {
   width: 370px;
   padding: 0.75rem 0 0.75rem 1rem;
   border-radius: 0.5rem;
@@ -144,50 +146,50 @@ section {
   font-size: 1.2rem;
 }
 
-.subscribe-input:focus {
+.subscribeInput:focus {
   outline: 2px solid #fff;
   box-shadow: 0 0 0 2px var(--primary-foreground);
 }
-.subscribe-input::placeholder {
+.subscribeInput::placeholder {
   color: #ffffffa9;
 }
 
 /* Responsive Design */
 
 @media (max-width: 1024px) {
-  .home-hero-section {
+  .homeHeroSection {
     flex-direction: column;
   }
-  .home-hero-left {
+  .homeHeroLeft {
     width: 100%;
     margin-bottom: 2rem;
   }
 }
 
 @media (max-width: 765px) {
-  .home-hero-right {
+  .homeHeroRight {
     width: 100%;
     height: auto;
   }
-  .feature-box {
+  .featureBox {
     width: 100%;
     margin: 1rem 0;
   }
-  .category-card {
+  .categoryCard {
     width: 100%;
     margin-bottom: 5vh;
   }
-  .subscribe-box {
+  .subscribeBox {
     width: 90%;
   }
-  .subscribe-form {
+  .subscribeForm {
     flex-direction: column;
   }
-  .subscribe-input {
+  .subscribeInput {
     width: 100%;
     box-sizing: border-box;
   }
-  .subscribe-button {
+  .subscribeButton {
     width: 100%;
   }
 }

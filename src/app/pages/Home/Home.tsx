@@ -9,7 +9,7 @@ import {
   Truck,
   Zap,
 } from "lucide-react";
-import "./home.css";
+import styles from "./home.module.css";
 import { products } from "../../data/products";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { useState } from "react";
@@ -38,11 +38,13 @@ function Home() {
     }, 5000);
   };
   return (
-    <div style={{ minHeight: "100vh" }}>
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="container flex items-center justify-between home-hero-section">
-          <div className="home-hero-left">
+      <section className={`${styles.heroSection} ${styles.section}`}>
+        <div
+          className={`container flex items-center justify-between ${styles.homeHeroSection}`}
+        >
+          <div className={`${styles.homeHeroLeft}`}>
             <h1 className="text-4xl text-bold margin-b">
               Discover the Latest in Technology
             </h1>
@@ -66,7 +68,7 @@ function Home() {
           </div>
           <div>
             <img
-              className="home-hero-right"
+              className={`${styles.homeHeroRight}`}
               src="https://images.unsplash.com/photo-1761795084688-bb007bc51697?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
               alt="Texhnology Store"
             />
@@ -74,20 +76,20 @@ function Home() {
         </div>
       </section>
       {/* Features */}
-      <section className="bg-color-gray">
+      <section className={`bg-color-gray ${styles.section}`}>
         <div className="container flex flex-wrap justify-between">
-          <div className="feature-box">
-            <div className="feature-icon-box">
-              <Truck className="feature-icon" />
+          <div className={`${styles.featureBox}`}>
+            <div className={`${styles.featureIconBox}`}>
+              <Truck className={`${styles.featureIcon}`} />
             </div>
             <div className="h-full padding-t">
               <h3 className="text-semibold line-h-none">Free Shipping</h3>
               <p className="text-md color-foreground">On orders over $100</p>
             </div>
           </div>
-          <div className="feature-box">
-            <div className="feature-icon-box">
-              <Shield className="feature-icon" />
+          <div className={`${styles.featureBox}`}>
+            <div className={`${styles.featureIconBox}`}>
+              <Shield className={`${styles.featureIcon}`} />
             </div>
             <div className="h-full padding-t">
               <h3 className="text-semibold line-h-none">Secure Payment</h3>
@@ -96,9 +98,9 @@ function Home() {
               </p>
             </div>
           </div>
-          <div className="feature-box">
-            <div className="feature-icon-box">
-              <Zap className="feature-icon" />
+          <div className={`${styles.featureBox}`}>
+            <div className={`${styles.featureIconBox}`}>
+              <Zap className={`${styles.featureIcon}`} />
             </div>
             <div className="h-full padding-t">
               <h3 className="text-semibold line-h-none">Fast Delivery</h3>
@@ -110,63 +112,72 @@ function Home() {
         </div>
       </section>
       {/* Category Preview */}
-      <section>
+      <section className={`${styles.section}`}>
         <div className="container flex flex-col">
-          <h2 className="category-section-title">Shop by Category</h2>
+          <h2 className={`${styles.categorySectionTitle}`}>Shop by Category</h2>
           <div className="w-full flex flex-wrap items-start justify-between">
-            <Link to="/products?category=computers" className="category-card">
+            <Link
+              to="/products?category=computers"
+              className={`${styles.categoryCard}`}
+            >
               <img
                 src="https://images.unsplash.com/photo-1717390996865-57d607483101?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
                 alt="Computers"
-                className="category-img"
+                className={`${styles.categoryImg}`}
               />
-              <div className="category-card-overlay" />
-              <div className="category-card-content">
-                <div className="category-icon-box">
-                  <Laptop className="category-icon" />
+              <div className={`${styles.categoryCardOverlay}`} />
+              <div className={`${styles.categoryCardContent}`}>
+                <div className={`${styles.categoryIconBox}`}>
+                  <Laptop className={`${styles.categoryIcon}`} />
                 </div>
-                <h3 className="category-card-title">Computers</h3>
-                <p className="category-card-text">12+ products</p>
+                <h3 className={`${styles.categoryCardTitle}`}>Computers</h3>
+                <p className={`${styles.categoryCardText}`}>12+ products</p>
               </div>
             </Link>
-            <Link to="/products?category=smartphones" className="category-card">
+            <Link
+              to="/products?category=smartphones"
+              className={`${styles.categoryCard}`}
+            >
               <img
                 src="https://images.unsplash.com/photo-1697545806152-dcbf88b3befb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
                 alt="Smartphones"
-                className="category-img"
+                className={`${styles.categoryImg}`}
               />
-              <div className="category-card-overlay" />
-              <div className="category-card-content">
-                <div className="category-icon-box">
-                  <Smartphone className="category-icon" />
+              <div className={`${styles.categoryCardOverlay}`} />
+              <div className={`${styles.categoryCardContent}`}>
+                <div className={`${styles.categoryIconBox}`}>
+                  <Smartphone className={`${styles.categoryIcon}`} />
                 </div>
-                <h3 className="category-card-title">Smartphones</h3>
-                <p className="category-card-text">11+ products</p>
+                <h3 className={`${styles.categoryCardTitle}`}>Smartphones</h3>
+                <p className={`${styles.categoryCardText}`}>11+ products</p>
               </div>
             </Link>
-            <Link to="/products?category=accessories" className="category-card">
+            <Link
+              to="/products?category=accessories"
+              className={`${styles.categoryCard}`}
+            >
               <img
                 src="https://images.unsplash.com/photo-1693279504914-d08266ecbe66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800"
                 alt="Accessories"
-                className="category-img"
+                className={`${styles.categoryImg}`}
               />
-              <div className="category-card-overlay" />
-              <div className="category-card-content">
-                <div className="category-icon-box">
-                  <Headphones className="category-icon" />
+              <div className={`${styles.categoryCardOverlay}`} />
+              <div className={`${styles.categoryCardContent}`}>
+                <div className={`${styles.categoryIconBox}`}>
+                  <Headphones className={`${styles.categoryIcon}`} />
                 </div>
-                <h3 className="category-card-title">Accessories</h3>
-                <p className="category-card-text">12+ products</p>
+                <h3 className={`${styles.categoryCardTitle}`}>Accessories</h3>
+                <p className={`${styles.categoryCardText}`}>12+ products</p>
               </div>
             </Link>
           </div>
         </div>
       </section>
       {/* Featured Products */}
-      <section className="bg-color-gray">
+      <section className={`bg-color-gray ${styles.section}`}>
         <div className="container flex flex-col">
           <div className="flex justify-between">
-            <h2 className="featured-products-section-title">
+            <h2 className={`${styles.featuredProductsSectionTitle}`}>
               Featured Products
             </h2>
             <Link to="/products">
@@ -175,7 +186,7 @@ function Home() {
               </Button>
             </Link>
           </div>
-          <div className="w-full flex flex-wrap items-center justify-center" style={{gap: "1.5rem"}}>
+          <div className="w-full flex flex-wrap items-center justify-between gap-sm">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -183,13 +194,10 @@ function Home() {
         </div>
       </section>
       {/*Promotional Banner*/}
-      <section className="bg-color-white" style={{ padding: "4rem 0" }}>
-        <div className="container" style={{ padding: "0 24px" }}>
-          <div
-            className="bg-color-blue"
-            style={{ padding: "4rem 0", borderRadius: "1.5rem" }}
-          >
-            <div className="subscribe-box">
+      <section className={`${styles.section}`}>
+        <div className="container">
+          <div className={`bg-color-blue border-radius ${styles.section}`}>
+            <div className={`${styles.subscribeBox}`}>
               <h2 className="text-3xl">Get 20% Off Your First Order</h2>
               <p>Sign up for our newsletter and recieve exclusive deals</p>
               {isSubscribed ? (
@@ -202,7 +210,7 @@ function Home() {
               ) : (
                 <form
                   onSubmit={handleSubscribe}
-                  className="subscribe-form flex gap-md justify-center"
+                  className={`${styles.subscribeForm} flex gap-md justify-center`}
                 >
                   <input
                     type="email"
@@ -210,14 +218,14 @@ function Home() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                     required
-                    className="subscribe-input"
+                    className={`${styles.subscribeInput}`}
                   />
                   <Button
                     variant="secondary"
                     size="lg"
                     type="submit"
                     disabled={isSubscribing}
-                    className="subscribe-button"
+                    className={`${styles.subscribeButton}`}
                   >
                     {isSubscribing ? "Subscribing..." : "Subscribe"}
                   </Button>
