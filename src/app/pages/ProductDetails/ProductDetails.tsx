@@ -1,4 +1,4 @@
-import "./productDetails.css";
+import styles from "./productDetails.module.css";
 import { products, reviews as allReviews } from "../../data/products";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../components/Button/Button";
@@ -46,26 +46,25 @@ export default function ProductDetails() {
   const images = [product.image, product.image, product.image];
 
   return (
-    <div className="min-h-screen bg-color-white" style={{ padding: "2rem 0" }}>
+    <div className={`min-h-screen bg-color-white ${styles.mainBox}`}>
       <div className="container flex flex-col gap-lg">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="border-none bg-color-white color-foreground flex items-center gap-sm text-md text-semibold back-btn"
+          className={`border-none bg-color-white color-foreground flex items-center gap-sm text-md text-semibold ${styles.backBtn}`}
         >
           <ArrowLeft className="" />
           Back
         </button>
         <div className="w-full flex flex-wrap justify-between gap-lg">
           {/* Image Gallery */}
-          <div className="img-gallery-box">
+          <div className={`${styles.imgGalleryBox}`}>
             {/* Main Image */}
-            <div className="w-full main-img">
+            <div className={`w-full ${styles.mainImgDiv}`}>
               <img
                 src={images[selectedImage]}
                 alt={product.name}
-                className="w-full h-full border-radius"
-                style={{ objectFit: "cover" }}
+                className={`w-full h-full border-radius ${styles.coverImg}`}
               />
             </div>
 
@@ -75,13 +74,12 @@ export default function ProductDetails() {
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
-                  className={`flex thumbnail-img ${selectedImage === idx ? "border-primary" : "border-simple"}`}
+                  className={`flex ${styles.thumbnailImg} ${selectedImage === idx ? styles.borderPrimary : styles.borderSimple}`}
                 >
                   <img
                     src={img}
                     alt={`${product.name} ${idx + 1}`}
-                    className="w-full h-full"
-                    style={{ objectFit: "cover" }}
+                    className={`w-full h-full ${styles.coverImg}`}
                   />
                 </button>
               ))}
@@ -89,7 +87,7 @@ export default function ProductDetails() {
           </div>
 
           {/* Product Info */}
-          <div className="product-info-box">
+          <div className={`${styles.productInfoBox}`}>
             {/* Category */}
             <p className="text-sm color-foreground margin-block-none">
               {product.category}
@@ -104,7 +102,7 @@ export default function ProductDetails() {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`${i < Math.floor(product.rating) ? "fill-yellow" : "text-gray"}`}
+                    className={`${i < Math.floor(product.rating) ? styles.fillYellow : styles.textGray}`}
                   />
                 ))}
               </div>
@@ -114,12 +112,11 @@ export default function ProductDetails() {
             </div>
 
             {/* Price */}
-            <div className="flex items-center gap-md margin-">
+            <div className="flex items-center gap-md">
               <span className="text-3xl text-bold">${product.price}</span>
               {product.originalPrice && (
                 <span
-                  className="text-xl color-foreground"
-                  style={{ textDecoration: "line-through" }}
+                  className={`text-xl color-foreground ${styles.originalPrice}`}
                 >
                   ${product.originalPrice}
                 </span>
@@ -130,13 +127,13 @@ export default function ProductDetails() {
             <div className="flex items-center gap-sm text-sm">
               {product.stock > 0 ? (
                 <>
-                  <Check style={{ color: "green" }} />
-                  <span style={{ color: "green" }}>
+                  <Check className={`${styles.colorGreen}`} />
+                  <span className={`${styles.colorGreen}`}>
                     In Stock ({product.stock} available)
                   </span>
                 </>
               ) : (
-                <span style={{ color: "red" }}>Out of Stock</span>
+                <span className={`${styles.colorRed}`}>Out of Stock</span>
               )}
             </div>
 
@@ -147,16 +144,9 @@ export default function ProductDetails() {
             {product.specs && (
               <div className="bg-color-gray border-radius padding border-box">
                 <h3 className="margin-block-none">Tecnical Specifications:</h3>
-                <ul
-                  className="flex flex-wrap gap-md"
-                  style={{ listStyle: "none", padding: "0" }}
-                >
+                <ul className={`flex flex-wrap gap-md ${styles.ul}`}>
                   {product.specs?.map((spec, idx) => (
-                    <li
-                      key={idx}
-                      className="flex gap-sm"
-                      style={{ width: "45%" }}
-                    >
+                    <li key={idx} className={`flex gap-sm ${styles.li}`}>
                       <Check className="color-primary" />
                       <span className="text-sm">{spec}</span>
                     </li>
@@ -170,7 +160,7 @@ export default function ProductDetails() {
               <div>
                 <h3 className="margin-block-none">Key Features:</h3>
                 <ul
-                  className="flex flex-col gap-sm"
+                  className={`flex flex-col gap-sm ${styles.ul}`}
                   style={{ listStyle: "none", padding: "0" }}
                 >
                   {product.features.map((feature, idx) => (
@@ -190,7 +180,7 @@ export default function ProductDetails() {
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   disabled={quantity <= 1}
-                  className="quantity-btn box-border bg-color-white flex items-center justify-center"
+                  className={`${styles.quantityBtn} box-border bg-color-white flex items-center justify-center`}
                 >
                   <Minus />
                 </button>
@@ -200,7 +190,7 @@ export default function ProductDetails() {
                     setQuantity(Math.min(product.stock, quantity + 1))
                   }
                   disabled={quantity >= product.stock}
-                  className="quantity-btn box-border bg-color-white flex items-center justify-center"
+                  className={`${styles.quantityBtn} box-border bg-color-white flex items-center justify-center`}
                 >
                   <Plus />
                 </button>
@@ -218,18 +208,12 @@ export default function ProductDetails() {
               Add to Cart
             </Button>
 
-            <hr
-              style={{ width: "100%", height: "2px" }}
-              className="border-none bg-color-gray margin-b"
-            />
+            <hr className={`border-none bg-color-gray margin-b ${styles.hr}`} />
 
             {/* Additional Info */}
             <div className="flex flex-col gap-md text-sm">
               <div className="flex gap-md items-center">
-                <Truck
-                  className="color-primary"
-                  style={{ marginTop: "-0.8rem" }}
-                />
+                <Truck className={`color-primary ${styles.infoIcon}`} />
                 <div>
                   <p className="text-semibold margin-block-none">
                     Free Shipping
@@ -240,10 +224,7 @@ export default function ProductDetails() {
                 </div>
               </div>
               <div className="flex gap-md items-center">
-                <Shield
-                  className="color-primary"
-                  style={{ marginTop: "-0.8rem" }}
-                />
+                <Shield className={`color-primary ${styles.infoIcon}`} />
                 <div>
                   <p className="text-semibold margin-block-none">
                     2 Year Warranty
@@ -275,10 +256,11 @@ export default function ProductDetails() {
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`${
-                            i < review.rating ? "fill-yellow" : "text-gray"
+                          className={`${styles.reviewStars} ${
+                            i < review.rating
+                              ? styles.fillYellow
+                              : styles.textGray
                           }`}
-                          style={{ width: "1.2rem", height: "1.2rem" }}
                         />
                       ))}
                     </div>
