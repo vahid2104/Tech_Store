@@ -1,8 +1,9 @@
 import { LogOut, Mail, Package, Phone, User } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 import { Button } from "../../components/Button/Button";
-import "./account.css";
+import styles from "./account.module.css";
 import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
 function Account() {
   const navigate = useNavigate();
@@ -16,34 +17,28 @@ function Account() {
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
       case "delivered":
-        return "status-delivered";
+        return "statusDelivered";
       case "shipped":
-        return "status-shipped";
+        return "statusShipped";
       case "processing":
-        return "status-processing";
+        return "statusProcessing";
       default:
-        return "status-default";
+        return "statusDefault";
     }
   };
   return (
-    <div className="min-h-screen bg-color-white">
-      <div className="container" style={{ paddingBottom: "2rem" }}>
+    <div className={`bg-color-white ${styles.mainBox}`}>
+      <div className={`container ${styles.containerBox}`}>
         <h1>My Account</h1>
         <div className="flex flex-wrap justify-between gap-md">
           {/* Profile Info */}
-          <div className="flex flex-col items-center box-border gap-md padding profile-box">
+          <div
+            className={`flex flex-col items-center box-border gap-md padding ${styles.profileBox}`}
+          >
             <div
-              className="flex items-center justify-center rounded-full"
-              style={{
-                width: "6rem",
-                height: "6rem",
-                backgroundColor: "rgb(214, 229, 248)",
-              }}
+              className={`flex items-center justify-center rounded-full ${styles.userIconDiv}`}
             >
-              <User
-                className="color-primary"
-                style={{ width: "3rem", height: "3rem" }}
-              />
+              <User className={`color-primary ${styles.userIcon}`} />
             </div>
             <h2 className="text-xl">{user?.name}</h2>
             <div className="w-full flex flex-col gap-md">
@@ -58,10 +53,9 @@ function Account() {
             </div>
 
             <Button
-              className="w-full"
+              className={`w-full ${styles.editBtn}`}
               variant="secondary"
               size="md"
-              style={{ backgroundColor: "rgb(228, 228, 228)" }}
               onClick={() => {
                 /* Edit Profile */
               }}
@@ -75,10 +69,9 @@ function Account() {
           </div>
 
           {/* Order History */}
-          <div className="order-history-box flex flex-col gap-lg">
+          <div className={`${styles.ordersBox} flex flex-col gap-lg`}>
             <div
-              className="padding box-border border-radius"
-              style={{ boxSizing: "border-box" }}
+              className={`padding box-border border-radius border-box ${styles.orderHistoryBox}`}
             >
               <div className="flex items-center gap-md">
                 <Package className="color-primary" />
@@ -93,22 +86,18 @@ function Account() {
                   >
                     <div className="flex justify-between items-center">
                       <div>
-                        <p
-                          className="text-semibold"
-                          style={{ marginBlock: "0" }}
-                        >
+                        <p className="text-semibold margin-block-none">
                           {order.id}
                         </p>
-                        <p
-                          className="text-sm color-foreground"
-                          style={{ marginBlock: "0" }}
-                        >
+                        <p className="text-sm color-foreground margin-block-none">
                           {order.date}
                         </p>
                       </div>
                       <span
-                        className={`text-sm rounded-full text-semibold ${getStatusColor(order.status)}`}
-                        style={{ padding: "5px 15px" }}
+                        className={clsx(
+                          "text-sm rounded-full text-semibold",
+                          styles[getStatusColor(order.status)],
+                        )}
                       >
                         {order.status}
                       </span>
@@ -140,34 +129,30 @@ function Account() {
 
             {/* Additional Sections */}
             <div className="flex flex-wrap justify-between gap-sm">
-              <div className="flex flex-col gap-sm padding box-border border-radius additional-section-box">
-                <h3 style={{ marginBlock: "0" }}>Addresses</h3>
-                <p
-                  className="text-sm color-foreground"
-                  style={{ marginBlock: "0" }}
-                >
+              <div
+                className={`flex flex-col gap-sm padding box-border border-radius ${styles.additionalSectionBox}`}
+              >
+                <h3 className="margin-block-none">Addresses</h3>
+                <p className="text-sm color-foreground margin-block-none">
                   Manage your shipping addresses
                 </p>
                 <Button
                   variant="secondary"
-                  className="w-full margin-t"
-                  style={{ backgroundColor: "rgb(228, 228, 228)" }}
+                  className={`w-full margin-t ${styles.manageBtn}`}
                 >
                   Manage Addreses
                 </Button>
               </div>
-              <div className="flex flex-col gap-sm padding box-border border-radius additional-section-box">
-                <h3 style={{ marginBlock: "0" }}>Payment Methods</h3>
-                <p
-                  className="text-sm color-foreground"
-                  style={{ marginBlock: "0" }}
-                >
+              <div
+                className={`flex flex-col gap-sm padding box-border border-radius ${styles.additionalSectionBox}`}
+              >
+                <h3 className="margin-block-none">Payment Methods</h3>
+                <p className="text-sm color-foreground margin-block-none">
                   Manage your payment options
                 </p>
                 <Button
                   variant="secondary"
-                  className="w-full margin-t"
-                  style={{ backgroundColor: "rgb(228, 228, 228)" }}
+                  className={`w-full margin-t ${styles.manageBtn}`}
                 >
                   Manage payment
                 </Button>

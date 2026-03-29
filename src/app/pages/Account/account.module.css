@@ -1,0 +1,84 @@
+.mainBox {
+  margin-bottom: 3rem;
+}
+.profileBox {
+  width: 35%;
+  height: fit-content;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.userIconDiv {
+  width: 6rem;
+  height: 6rem;
+  background-color: rgb(214, 229, 248);
+}
+.userIcon {
+  width: 3rem;
+  height: 3rem;
+}
+.editBtn {
+  background-color: rgb(228, 228, 228);
+}
+.ordersBox {
+  width: 60%;
+}
+.orderHistoryBox {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.statusDelivered {
+  padding: 5px 15px;
+  background-color: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.statusShipped {
+  padding: 5px 15px;
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.statusProcessing {
+  background-color: #fef9c3;
+  color: #854d0e;
+  border-color: #fde68a;
+}
+
+.statusDefault {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border-color: #e5e7eb;
+}
+.additionalSectionBox {
+  width: 44%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.manageBtn {
+  background-color: rgb(228, 228, 228);
+}
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+  .profileBox {
+    width: 100%;
+  }
+  .ordersBox {
+    width: 100%;
+  }
+  .orderHistoryBox {
+    margin: 2rem 0;
+  }
+  .containerBox {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+@media (max-width: 640px) {
+  .additionalSectionBox {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
